@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-Phone – Handy & Technik Service Essen</title>
+<style>
+body {font-family: Arial, sans-serif; margin:0; background:#f5f5f5; color:#222;}
+header {background:#111; color:#fff; padding:20px;}
+section {padding:30px;}
+h1,h2,h3 {color:#111;}
+.btn {display:inline-block; padding:12px 18px; background:#25D366; color:#fff; text-decoration:none; border-radius:6px; margin:5px 0;}
+.lang {float:right;}
+.box {background:#fff; padding:20px; margin-bottom:20px; border-radius:8px;}
+footer {background:#111; color:#fff; padding:20px; text-align:center;}
+</style>
+<script>
+function setLang(lang){
+  document.querySelectorAll("[data-lang]").forEach(e=>{
+    e.style.display = e.getAttribute("data-lang")==lang?"block":"none";
+  });
+  localStorage.setItem("lang",lang);
+}
+window.onload=function(){
+  setLang(localStorage.getItem("lang")||"de");
+}
+</script>
+</head>
+
+<body>
+
+<header>
+  <div class="lang">
+    <button onclick="setLang('de')">DE</button>
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('ar')">AR</button>
+  </div>
+  <h1>K-Phone – Handy & Technik Service</h1>
+  <p>Viehofer Straße 20 · Essen</p>
+  <a class="btn" href="https://wa.me/4915732000330">WhatsApp schreiben</a>
+</header>
+
+<section class="box" data-lang="de">
+<h2>Unsere Leistungen</h2>
+<ul>
+<li>Handy Reparatur</li>
+<li>Laptop & Tablet Reparatur</li>
+<li>Reparatur per Versand (Preis vorab über WhatsApp)</li>
+<li>Firmenservice: IT-Entsorgung & sichere Datenlöschung</li>
+<li>SIM-Karten & Guthaben (nur Prepaid)</li>
+<li>Großes Zubehör-Sortiment (Schwerpunkt Xssive)</li>
+<li>Auto- & Fahrrad-Handyhalter</li>
+<li>Smart Watches & Gaming-Zubehör</li>
+</ul>
+</section>
+
+<section class="box" data-lang="en">
+<h2>Our Services</h2>
+<ul>
+<li>Smartphone repair</li>
+<li>Laptop & tablet repair</li>
+<li>Mail-in repair service</li>
+<li>Business IT disposal & data destruction</li>
+<li>Prepaid SIM cards & top-up</li>
+<li>Accessories (mainly Xssive)</li>
+<li>Car & bike phone holders</li>
+<li>Smart watches & gaming accessories</li>
+</ul>
+</section>
+
+<section class="box" data-lang="ar" dir="rtl">
+<h2>خدماتنا</h2>
+<ul>
+<li>تصليح الهواتف</li>
+<li>تصليح اللابتوب والتابلت</li>
+<li>تصليح عن طريق الشحن</li>
+<li>خدمات للشركات: حذف البيانات وإتلاف الأقراص</li>
+<li>شرائح وبطاقات شحن (دفع مسبق فقط)</li>
+<li>إكسسوارات – خاصة Xssive</li>
+<li>حوامل سيارات ودراجات</li>
+<li>ساعات ذكية وإكسسوارات ألعاب</li>
+</ul>
+</section>
+
+<section class="box">
+<h3>Öffnungszeiten</h3>
+<p>Mo–Fr: 09:00 – 21:30<br>
+Sa: 10:00 – 21:30<br>
+So: geschlossen</p>
+</section>
+
+<footer>
+<p>© K-Phone Essen</p>
+</footer>
+
+</body>
+</html>
