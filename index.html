@@ -3,26 +3,121 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K-Phone – Handy & Technik Service Essen</title>
+<title>K-Phone Handy Shop Essen</title>
+
 <style>
-body {font-family: Arial, sans-serif; margin:0; background:#f5f5f5; color:#222;}
-header {background:#111; color:#fff; padding:20px;}
-section {padding:30px;}
-h1,h2,h3 {color:#111;}
-.btn {display:inline-block; padding:12px 18px; background:#25D366; color:#fff; text-decoration:none; border-radius:6px; margin:5px 0;}
-.lang {float:right;}
-.box {background:#fff; padding:20px; margin-bottom:20px; border-radius:8px;}
-footer {background:#111; color:#fff; padding:20px; text-align:center;}
-</style>
-<script>
-function setLang(lang){
-  document.querySelectorAll("[data-lang]").forEach(e=>{
-    e.style.display = e.getAttribute("data-lang")==lang?"block":"none";
-  });
-  localStorage.setItem("lang",lang);
+:root{
+  --red:#c4161c;
+  --bg:#ffffff;
+  --text:#111111;
+  --card:#f5f5f5;
 }
-window.onload=function(){
-  setLang(localStorage.getItem("lang")||"de");
+[data-theme="dark"]{
+  --bg:#0f1113;
+  --text:#f2f2f2;
+  --card:#1a1d21;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+header{
+  position:sticky;top:0;z-index:10;
+  background:linear-gradient(90deg,#000,#111);
+  color:#fff;
+  padding:16px;
+}
+.header-inner{
+  max-width:1200px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.logo{
+  font-weight:800;letter-spacing:.5px;
+}
+.logo span{color:var(--red)}
+.actions{display:flex;gap:8px;align-items:center}
+.btn{
+  padding:10px 14px;border-radius:8px;
+  background:var(--red);color:#fff;font-weight:600;
+}
+.toggle{
+  background:#222;color:#fff;border-radius:8px;
+  padding:8px 10px;cursor:pointer;border:1px solid #333;
+}
+
+.hero{
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.35)),
+    url('https://images.unsplash.com/photo-1510557880182-3d4d3cba35c4?q=80&w=1600&auto=format&fit=crop');
+  background-size:cover;background-position:center;
+  color:#fff;
+}
+.hero-inner{
+  max-width:1200px;margin:auto;padding:90px 16px;
+}
+.hero h1{font-size:42px;margin:0 0 10px}
+.hero p{max-width:680px;font-size:18px}
+
+.section{max-width:1200px;margin:auto;padding:70px 16px}
+.section h2{
+  font-size:30px;margin:0 0 20px;
+  border-left:6px solid var(--red);padding-left:12px;
+}
+
+.grid{
+  display:grid;gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+.card{
+  background:var(--card);
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+.card img{width:100%;height:180px;object-fit:cover}
+.card .c{padding:18px}
+
+.list{columns:2;gap:24px}
+@media(max-width:700px){.list{columns:1}}
+
+.details{display:none}
+.details.open{display:block}
+
+.footer{
+  background:#000;color:#ddd;
+  padding:30px 16px;margin-top:40px;
+}
+.footer-inner{max-width:1200px;margin:auto}
+.small{font-size:14px;color:#aaa}
+.badge{display:inline-block;background:#111;color:#fff;border:1px solid #333;padding:6px 10px;border-radius:999px}
+
+.whatsapp{
+  position:fixed;right:18px;bottom:18px;
+  background:#25D366;color:#fff;
+  padding:14px 16px;border-radius:999px;
+  font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+</style>
+
+<script>
+(function(){
+  const h=new Date().getHours();
+  const saved=localStorage.getItem('theme');
+  if(saved){document.documentElement.setAttribute('data-theme',saved);}
+  else if(h>=19||h<7){document.documentElement.setAttribute('data-theme','dark');}
+})();
+function toggleTheme(){
+  const t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+}
+function toggle(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
 }
 </script>
 </head>
@@ -30,68 +125,128 @@ window.onload=function(){
 <body>
 
 <header>
-  <div class="lang">
-    <button onclick="setLang('de')">DE</button>
-    <button onclick="setLang('en')">EN</button>
-    <button onclick="setLang('ar')">AR</button>
+  <div class="header-inner">
+    <div class="logo">K-Phone <span>Handy Shop Essen</span></div>
+    <div class="actions">
+      <a class="btn" href="https://wa.me/4915732000330">WhatsApp</a>
+      <div class="toggle" onclick="toggleTheme()">☀️ / 🌙</div>
+    </div>
   </div>
-  <h1>K-Phone – Handy & Technik Service</h1>
-  <p>Viehofer Straße 20 · Essen</p>
-  <a class="btn" href="https://wa.me/4915732000330">WhatsApp schreiben</a>
 </header>
 
-<section class="box" data-lang="de">
-<h2>Unsere Leistungen</h2>
-<ul>
-<li>Handy Reparatur</li>
-<li>Laptop & Tablet Reparatur</li>
-<li>Reparatur per Versand (Preis vorab über WhatsApp)</li>
-<li>Firmenservice: IT-Entsorgung & sichere Datenlöschung</li>
-<li>SIM-Karten & Guthaben (nur Prepaid)</li>
-<li>Großes Zubehör-Sortiment (Schwerpunkt Xssive)</li>
-<li>Auto- & Fahrrad-Handyhalter</li>
-<li>Smart Watches & Gaming-Zubehör</li>
-</ul>
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Handy · Reparatur · Zubehör · Prepaid</h1>
+    <p>Schnell. Fair. Zuverlässig. Einer der größten XSSIVE-Anbieter in NRW.
+       Reparaturen im Laden oder per Versand – Preis vorab über WhatsApp.</p>
+  </div>
 </section>
 
-<section class="box" data-lang="en">
-<h2>Our Services</h2>
-<ul>
-<li>Smartphone repair</li>
-<li>Laptop & tablet repair</li>
-<li>Mail-in repair service</li>
-<li>Business IT disposal & data destruction</li>
-<li>Prepaid SIM cards & top-up</li>
-<li>Accessories (mainly Xssive)</li>
-<li>Car & bike phone holders</li>
-<li>Smart watches & gaming accessories</li>
-</ul>
+<section class="section">
+  <h2>Unsere Bereiche</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1581092334504-58b6f9b3f1c4?q=80&w=1200&auto=format&fit=crop">
+      <div class="c">
+        <h3>Reparatur</h3>
+        <p>Wir reparieren nahezu alles, was reparierbar ist.</p>
+        <a class="btn" onclick="toggle('rep')">Mehr anzeigen</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop">
+      <div class="c">
+        <h3>An- & Verkauf</h3>
+        <p>Handys, PCs, Laptops, iPads & Tablets.</p>
+        <a class="btn" onclick="toggle('trade')">Mehr anzeigen</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1580910051074-7b6a1fca8a4a?q=80&w=1200&auto=format&fit=crop">
+      <div class="c">
+        <h3>Zubehör</h3>
+        <p>Große Auswahl – Fokus XSSIVE.</p>
+        <a class="btn" onclick="toggle('acc')">Mehr anzeigen</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?q=80&w=1200&auto=format&fit=crop">
+      <div class="c">
+        <h3>SIM & Prepaid</h3>
+        <p>Ortel & Ay Yildiz – Aktivierung vor Ort.</p>
+        <a class="btn" onclick="toggle('sim')">Mehr anzeigen</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="rep" class="details">
+    <h3>Reparatur – Leistungen</h3>
+    <div class="list">
+      <p>Display, Akku, Ladebuchse, Mikro/Lautsprecher, Kamera, Tasten, Wasserschaden,
+      Software/Updates, Datenrettung (wenn möglich), Netz/WLAN/Bluetooth,
+      Face ID/Fingerprint (modellabhängig), Tablet & Laptop Reparaturen.</p>
+    </div>
+  </div>
+
+  <div id="trade" class="details">
+    <h3>An- & Verkauf</h3>
+    <p>Wir kaufen Handys, PCs, Laptops, iPads & Tablets an. Defekte Geräte kaufen wir
+    nicht an – können diese aber fachgerecht entsorgen.</p>
+  </div>
+
+  <div id="acc" class="details">
+    <h3>Zubehör – XSSIVE</h3>
+    <p><span class="badge">Einer der größten XSSIVE-Anbieter in NRW</span></p>
+    <div class="list">
+      <p>Schutzglas (klar, dunkel, matt), Hüllen/Cover, Kabel (alt & neu),
+      Stecker/Netzteile, Adapter/AUX, Kopfhörer (mit/ohne Kabel, Gaming),
+      Powerbanks, Auto- & Fahrradhalter, LAN & mehr – alles rund ums Handy.</p>
+    </div>
+  </div>
+
+  <div id="sim" class="details">
+    <h3>SIM & Prepaid</h3>
+    <p>Prepaid SIM-Karten & Aufladung. Wir arbeiten direkt mit <b>Ortel</b> und
+    <b>Ay Yildiz</b>. Aktivierung mit Ausweis – Hilfe & Einrichtung vor Ort.</p>
+  </div>
 </section>
 
-<section class="box" data-lang="ar" dir="rtl">
-<h2>خدماتنا</h2>
-<ul>
-<li>تصليح الهواتف</li>
-<li>تصليح اللابتوب والتابلت</li>
-<li>تصليح عن طريق الشحن</li>
-<li>خدمات للشركات: حذف البيانات وإتلاف الأقراص</li>
-<li>شرائح وبطاقات شحن (دفع مسبق فقط)</li>
-<li>إكسسوارات – خاصة Xssive</li>
-<li>حوامل سيارات ودراجات</li>
-<li>ساعات ذكية وإكسسوارات ألعاب</li>
-</ul>
+<section class="section">
+  <h2>Kontakt</h2>
+  <p>
+    <b>K-Phone Handy Shop Essen</b><br>
+    Viehofer Straße 20, 45127 Essen<br>
+    Tel: 0201 63268951 · WhatsApp: +49 157 32000330<br>
+    E-Mail: k.phone@web.de
+  </p>
+  <p class="small">Mo–Fr 09:00–21:30 · Sa 10:00–21:30 · So geschlossen</p>
 </section>
 
-<section class="box">
-<h3>Öffnungszeiten</h3>
-<p>Mo–Fr: 09:00 – 21:30<br>
-Sa: 10:00 – 21:30<br>
-So: geschlossen</p>
+<section class="section">
+  <h2>Impressum</h2>
+  <p class="small">
+    K-Phone Handy Shop Essen · Inhaber: Ala Rasho · Viehofer Straße 20 · 45127 Essen ·
+    Tel: 0201 63268951 · E-Mail: k.phone@web.de
+  </p>
 </section>
 
-<footer>
-<p>© K-Phone Essen</p>
-</footer>
+<section class="section">
+  <h2>Datenschutz</h2>
+  <p class="small">
+    Diese Website wird über GitHub Pages gehostet. Beim Besuch können technische
+    Daten verarbeitet werden. Kontakt über WhatsApp erfolgt gemäß den
+    Datenschutzbestimmungen von WhatsApp (Meta). Weitere Details auf Anfrage.
+  </p>
+</section>
+
+<a class="whatsapp" href="https://wa.me/4915732000330">WhatsApp schreiben</a>
+
+<div class="footer">
+  <div class="footer-inner small">© K-Phone Essen</div>
+</div>
 
 </body>
 </html>
