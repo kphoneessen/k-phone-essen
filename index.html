@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>K-Phone Handy Shop Essen – Reparatur, Zubehör &amp; Prepaid seit 2014</title>
 <meta name="description" content="K-Phone Handy Shop in Essen (Viehofer Straße 20): Handy-, Tablet- und Laptop-Reparatur, Zubehör, Prepaid-SIM sowie An- und Verkauf. Mo–Fr 09:00–21:30, Sa 10:00–21:30.">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#0b0c0f">
+<meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://kphoneessen.github.io/k-phone-essen/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📱%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23c4161c'/%3E%3Crect x='21' y='12' width='22' height='40' rx='5' fill='none' stroke='white' stroke-width='4'/%3E%3Ccircle cx='32' cy='45' r='2.5' fill='white'/%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
@@ -34,6 +36,12 @@
     "addressLocality": "Essen",
     "addressCountry": "DE"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 51.4586363,
+    "longitude": 7.0134018
+  },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=K-Phone%20Handy%20Shop%20Essen%2C%20Viehofer%20Stra%C3%9Fe%2020%2C%2045127%20Essen",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -51,272 +59,15 @@
 }
 </script>
 
-<style>
-:root{
-  --red:#c4161c;
-  --red-dark:#9f1015;
-  --bg:#ffffff;
-  --text:#111111;
-  --card:#f4f5f6;
-  --muted:#5f666d;
-  --border:rgba(0,0,0,.1);
-  --radius:16px;
-  --shadow:0 10px 30px rgba(0,0,0,.08);
-}
-[data-theme="dark"]{
-  --bg:#0e1012;
-  --text:#f2f2f2;
-  --card:#181b1f;
-  --muted:#aeb4ba;
-  --border:rgba(255,255,255,.1);
-  --shadow:0 10px 30px rgba(0,0,0,.4);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-[id]{scroll-margin-top:84px}
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:inherit;text-decoration:none}
-a.link{text-decoration:underline;text-underline-offset:3px}
-img{max-width:100%;display:block}
-:focus-visible{outline:3px solid var(--red);outline-offset:3px}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-
-.sr-only{
-  position:absolute;width:1px;height:1px;overflow:hidden;
-  clip:rect(0 0 0 0);white-space:nowrap;
-}
-.skip{
-  position:absolute;left:12px;top:-60px;z-index:100;
-  background:#fff;color:#000;padding:10px 14px;border-radius:8px;font-weight:700;
-}
-.skip:focus{top:12px}
-
-/* Icons */
-.i{
-  width:1.25em;height:1.25em;flex:none;
-  fill:none;stroke:currentColor;stroke-width:2;
-  stroke-linecap:round;stroke-linejoin:round;
-}
-
-/* Buttons */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:.55em;
-  background:var(--red);color:#fff;
-  padding:10px 16px;border-radius:10px;
-  font:inherit;font-weight:700;line-height:1.3;
-  cursor:pointer;border:0;
-  transition:background .15s ease,transform .15s ease;
-}
-.btn:hover{background:var(--red-dark)}
-.btn-lg{padding:14px 22px;font-size:17px}
-.btn-light{background:#fff;color:#111}
-.btn-light:hover{background:#e9e9e9}
-
-/* Header */
-header{
-  position:sticky;top:0;z-index:10;
-  background:#000;color:#fff;
-  border-bottom:2px solid var(--red);
-}
-.header-inner{
-  max-width:1200px;margin:auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 16px;gap:14px;
-}
-.logo{
-  display:flex;align-items:center;gap:10px;
-  font-weight:900;letter-spacing:.5px;
-}
-.logo .i{color:var(--red);width:1.5em;height:1.5em}
-.logo span{color:var(--red)}
-.nav{display:flex;gap:22px;margin-left:auto}
-.nav a{color:#d6d6d6;font-weight:600}
-.nav a:hover{color:#fff}
-.actions{display:flex;gap:8px;align-items:center}
-.toggle{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:42px;height:42px;
-  background:#222;color:#fff;border:1px solid #333;
-  border-radius:10px;cursor:pointer;
-}
-.toggle:hover{background:#2e2e2e}
-.ico-sun{display:none}
-[data-theme="dark"] .ico-sun{display:inline}
-[data-theme="dark"] .ico-moon{display:none}
-
-/* Hero */
-.hero{
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.84) 0%,rgba(0,0,0,.62) 55%,rgba(0,0,0,.4) 100%),
-    url('https://images.unsplash.com/photo-1550041473-d296a3a8a18a?auto=format&fit=crop&crop=entropy&w=1600&h=900&q=70');
-  background-size:cover;background-position:center;color:#fff;
-}
-.hero-inner{
-  max-width:1200px;margin:auto;padding:104px 16px 96px;
-}
-.eyebrow{
-  margin:0 0 14px;
-  font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:#ff6a6f;
-}
-.hero h1{
-  font-size:clamp(34px,5.4vw,58px);
-  line-height:1.1;margin:0 0 18px;letter-spacing:-.01em;
-}
-.hero .lead{max-width:640px;font-size:19px;margin:0 0 28px;color:#f0f0f0}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
-.badges{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:0}
-.badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.22);border-radius:999px;
-  padding:7px 14px;font-size:14px;
-}
-.badge .i{color:#ff6a6f;width:1.1em;height:1.1em}
-
-/* Info-Leiste */
-.infobar{max-width:1200px;margin:-44px auto 0;padding:0 16px;position:relative;z-index:2}
-.infobar-inner{
-  display:grid;gap:0;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
-}
-.info{display:flex;align-items:flex-start;gap:14px;padding:20px 22px}
-.info + .info{border-left:1px solid var(--border)}
-.info .i{color:var(--red);width:1.6em;height:1.6em;margin-top:2px}
-.info strong,.info a{display:block;font-weight:700}
-.info span{display:block;color:var(--muted);font-size:14px}
-@media (max-width:760px){
-  .info + .info{border-left:0;border-top:1px solid var(--border)}
-}
-
-/* Abschnitte */
-.section{max-width:1200px;margin:auto;padding:76px 16px 28px}
-.section .label{
-  margin:0 0 8px;font-size:13px;font-weight:800;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--red);
-}
-.section h2{
-  font-size:clamp(26px,3.4vw,34px);margin:0 0 28px;line-height:1.2;
-}
-
-/* Karten */
-.cards{
-  display:grid;gap:20px;align-items:start;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-}
-.card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
-}
-.card img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:#222}
-.card .c{padding:20px}
-.card h3{margin:0 0 6px;font-size:19px}
-.card p{margin:0 0 14px}
-
-details summary{
-  list-style:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:10px 14px;border-radius:10px;
-  border:1px solid var(--red);color:var(--red);font-weight:700;
-}
-details summary::-webkit-details-marker{display:none}
-details summary::after{
-  content:"";width:8px;height:8px;flex:none;
-  border-right:2px solid currentColor;border-bottom:2px solid currentColor;
-  transform:rotate(45deg);margin-top:-3px;transition:transform .2s ease;
-}
-details[open] summary{background:var(--red);color:#fff}
-details[open] summary::after{transform:rotate(-135deg);margin-top:3px}
-details .more{padding-top:16px}
-
-.list{
-  list-style:none;padding:0;margin:0;
-  display:grid;grid-template-columns:1fr;gap:2px
-}
-.list li{padding:7px 0;border-bottom:1px dashed var(--border)}
-.list li:last-child{border-bottom:0}
-.kicker{color:var(--muted);font-size:14px}
-
-/* Kontakt */
-.contact-grid{
-  display:grid;gap:20px;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-}
-.contact-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);
-}
-.contact-card h3{margin:0 0 14px;font-size:20px}
-.contact-list{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:12px}
-.contact-list li{display:flex;align-items:flex-start;gap:12px}
-.contact-list .i{color:var(--red);margin-top:3px}
-.hours{width:100%;border-collapse:collapse}
-.hours th,.hours td{padding:9px 0;border-bottom:1px solid var(--border);text-align:left;font-weight:400}
-.hours td{text-align:right;font-weight:700}
-.hours tr:last-child th,.hours tr:last-child td{border-bottom:0}
-.contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-
-/* Footer */
-.footer{
-  background:#000;color:#999;margin-top:64px;
-  padding-bottom:76px; /* Platz für den schwebenden WhatsApp-Button */
-}
-.footer-inner{max-width:1200px;margin:auto;padding:28px 16px}
-.footer small{font-size:13px;color:#999}
-.footer a{color:#b5b5b5;text-decoration:underline;text-underline-offset:3px}
-.footer a:hover{color:#fff}
-.legal{
-  display:grid;gap:28px;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  margin-top:20px;padding-top:20px;border-top:1px solid #222;
-  font-size:13px;color:#999;line-height:1.55;
-}
-.legal h3{font-size:14px;color:#ddd;margin:0 0 8px}
-.legal p{margin:0 0 8px}
-
-/* Schwebender WhatsApp-Button */
-.whatsapp{
-  position:fixed;right:18px;bottom:18px;z-index:20;
-  display:inline-flex;align-items:center;gap:8px;
-  background:#1faa57;color:#fff;
-  padding:13px 18px;border-radius:999px;
-  font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-.whatsapp:hover{background:#188a46}
-
-@media (max-width:700px){
-  .nav{display:none}
-  .actions{margin-left:auto}
-  .actions .btn{display:none} /* auf dem Handy übernimmt der schwebende WhatsApp-Button */
-  .hero{
-    background:
-      linear-gradient(180deg,rgba(0,0,0,.72),rgba(0,0,0,.72)),
-      url('https://images.unsplash.com/photo-1550041473-d296a3a8a18a?auto=format&fit=crop&crop=entropy&w=1000&h=900&q=70');
-    background-size:cover;background-position:center;
-  }
-  .hero-inner{padding:64px 16px 80px}
-  .hero .lead{font-size:17px}
-  .btn-lg{width:100%}
-  .section{padding-top:56px}
-}
-</style>
-
 <script>
-// Auto Dark/Light (abends Dark), + manueller Override
+// Farbschema: gespeicherte Auswahl, sonst Einstellung des Geräts
 (function(){
-  var h=new Date().getHours();
-  var saved=null;
-  try{saved=localStorage.getItem('theme');}catch(e){}
-  if(saved){document.documentElement.setAttribute('data-theme',saved);}
-  else if(h>=19||h<7){document.documentElement.setAttribute('data-theme','dark');}
+  var t=null;
+  try{t=localStorage.getItem('theme');}catch(e){}
+  if(t!=='light'&&t!=='dark'){
+    t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  }
+  document.documentElement.setAttribute('data-theme',t);
 })();
 function toggleTheme(){
   var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
@@ -324,6 +75,348 @@ function toggleTheme(){
   try{localStorage.setItem('theme',t);}catch(e){}
 }
 </script>
+
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f5f2;
+  --surface:#ffffff;
+  --text:#14161a;
+  --muted:#5a616b;
+  --line:rgba(20,22,26,.10);
+  --line-strong:rgba(20,22,26,.24);
+  --accent:#c4161c;
+  --accent-hover:#a51218;
+  --accent-ink:#c4161c;
+  --ink:#0b0c0f;
+  --on-ink:#f3f3f1;
+  --on-ink-muted:#a9afb7;
+  --on-ink-accent:#ff6b70;
+  --shadow:0 1px 2px rgba(20,22,26,.05),0 14px 34px rgba(20,22,26,.08);
+  --radius:18px;
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0c0d10;
+  --surface:#15171b;
+  --text:#f3f3f1;
+  --muted:#a4aab2;
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.26);
+  --accent-ink:#ff6b70;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 40px rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+[id]{scroll-margin-top:84px}
+body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+a.link{text-decoration:underline;text-underline-offset:3px}
+img{max-width:100%;display:block}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:3px solid var(--accent-ink);outline-offset:3px;border-radius:6px}
+.dark-zone :focus-visible{outline-color:var(--on-ink-accent)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.sr-only{
+  position:absolute;width:1px;height:1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;
+}
+.skip{
+  position:absolute;left:12px;top:-64px;z-index:100;
+  background:#fff;color:#000;padding:10px 14px;border-radius:8px;font-weight:700;
+}
+.skip:focus{top:12px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+
+/* Icons */
+.i{
+  width:1.25em;height:1.25em;flex:none;
+  fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.i-fill{fill:currentColor;stroke:none}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+  padding:12px 20px;border-radius:12px;border:1px solid transparent;
+  background:var(--accent);color:#fff;
+  font:inherit;font-weight:700;line-height:1.2;white-space:nowrap;
+  cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.btn:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-lg{padding:15px 26px;font-size:17px}
+.btn-ghost{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.34);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.16)}
+.btn-outline{background:transparent;border-color:var(--line-strong);color:var(--text)}
+.btn-outline:hover{background:var(--surface);border-color:var(--text)}
+
+/* Header */
+.site-header{
+  position:sticky;top:0;z-index:30;
+  background:rgba(11,12,15,.92);
+  -webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+  border-bottom:2px solid var(--accent);color:var(--on-ink);
+}
+.header-inner{display:flex;align-items:center;gap:20px;padding-top:11px;padding-bottom:11px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  display:grid;place-items:center;flex:none;
+  width:40px;height:40px;border-radius:11px;background:var(--accent);color:#fff;
+}
+.brand-mark .i{width:22px;height:22px}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text strong{font-size:18px;font-weight:800;letter-spacing:-.01em}
+.brand-text small{white-space:nowrap;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--on-ink-muted)}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{color:#d5d8dc;font-weight:600;font-size:15px}
+.nav a:hover{color:#fff}
+.header-actions{display:flex;gap:10px;align-items:center}
+.header-actions .btn{padding:10px 16px;font-size:15px}
+.toggle{
+  display:inline-grid;place-items:center;
+  width:42px;height:42px;border-radius:12px;cursor:pointer;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;
+}
+.toggle:hover{background:rgba(255,255,255,.16)}
+.ico-sun{display:none}
+[data-theme="dark"] .ico-sun{display:block}
+[data-theme="dark"] .ico-moon{display:none}
+
+/* Hero */
+.hero{position:relative;isolation:isolate;background:var(--ink);color:var(--on-ink);overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:url('https://images.unsplash.com/photo-1550041473-d296a3a8a18a?auto=format&fit=crop&crop=entropy&w=1600&h=900&q=70') center/cover no-repeat;
+  filter:grayscale(.85) contrast(1.1) brightness(.78);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(90deg,rgba(11,12,15,.93) 0%,rgba(11,12,15,.74) 52%,rgba(11,12,15,.5) 100%),
+    linear-gradient(180deg,rgba(11,12,15,0) 55%,rgba(11,12,15,.85) 100%);
+}
+.hero .wrap{padding-top:108px;padding-bottom:132px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;margin:0;
+  padding:6px 14px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);
+  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink);
+}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--on-ink-accent)}
+.hero h1{
+  margin:22px 0 20px;
+  font-size:clamp(42px,6.4vw,76px);font-weight:800;line-height:1.02;letter-spacing:-.035em;
+}
+.hero h1 .accent{display:block;color:var(--on-ink-accent)}
+.hero .lead{max-width:600px;margin:0 0 34px;font-size:19px;color:#e7e8ea}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.rating-link{
+  display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin-top:38px;
+  font-size:15px;color:var(--on-ink);
+}
+.stars{display:inline-flex;gap:2px;color:#f5b301}
+.stars .i{width:18px;height:18px}
+.rating-link:hover .rating-text{text-decoration:underline;text-underline-offset:3px}
+.rating-note{color:var(--on-ink-muted);font-size:13px}
+
+/* Info-Leiste */
+.infobar{position:relative;z-index:3;margin-top:-52px}
+.infobar-inner{
+  display:grid;grid-template-columns:1fr;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
+}
+.info{display:flex;align-items:flex-start;gap:16px;padding:22px 26px}
+.info + .info{border-top:1px solid var(--line)}
+.info .i{color:var(--accent-ink);width:26px;height:26px;margin-top:2px}
+.info strong,.info a{display:block;font-weight:700}
+.info span{display:block;color:var(--muted);font-size:14.5px}
+@media (min-width:861px){
+  .infobar-inner{grid-template-columns:repeat(3,1fr)}
+  .info + .info{border-top:0;border-left:1px solid var(--line)}
+}
+
+/* Abschnitte */
+.section{padding:92px 0 0}
+.section-tight{padding-top:56px}
+.label{
+  margin:0 0 12px;font-size:13px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);
+}
+.section h2{margin:0 0 18px;font-size:clamp(28px,3.8vw,42px);font-weight:800}
+.section-lead{max-width:640px;margin:0 0 34px;color:var(--muted);font-size:18px}
+
+/* Vorteile */
+.perks{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:560px){.perks{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.perks{grid-template-columns:repeat(4,1fr)}}
+.perk{
+  display:flex;gap:16px;align-items:flex-start;padding:22px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+}
+.perk-icon{
+  flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:12px;
+  background:rgba(196,22,28,.1);color:var(--accent-ink);
+}
+.perk-icon .i{width:24px;height:24px}
+.perk strong{display:block;line-height:1.3}
+.perk span{display:block;margin-top:4px;color:var(--muted);font-size:14.5px;line-height:1.45}
+
+/* Fotos: einheitliche Farbwelt */
+.media{position:relative;overflow:hidden;background:#1a1c20}
+.media img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:grayscale(.85) contrast(1.08) brightness(.93);
+  transition:filter .45s ease,transform .7s ease;
+}
+.media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(11,12,15,0) 45%,rgba(11,12,15,.5) 100%),
+    linear-gradient(135deg,rgba(196,22,28,.22),rgba(196,22,28,0) 62%);
+}
+.card:hover .media img,.feature:hover .media img{
+  filter:grayscale(.15) contrast(1.05) brightness(1);transform:scale(1.04);
+}
+
+/* Reparatur (Hauptbereich) */
+.feature{display:grid;gap:38px;align-items:center;grid-template-columns:1fr}
+.feature .media{aspect-ratio:16/10;border-radius:var(--radius);box-shadow:var(--shadow)}
+@media (min-width:900px){
+  .feature{grid-template-columns:5fr 6fr;gap:64px}
+  .feature .media{aspect-ratio:4/5}
+}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:11px 28px}
+.checks li{display:flex;gap:10px;align-items:flex-start;line-height:1.45}
+.checks .i{color:var(--accent-ink);width:1.1em;height:1.1em;margin-top:.2em}
+.checks li.no,.checks li.no .i{color:var(--muted)}
+@media (min-width:640px){.checks.cols-2{grid-template-columns:1fr 1fr}}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+
+/* Karten */
+.cards{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{
+  display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);transition:transform .25s ease;
+}
+.card:hover{transform:translateY(-3px)}
+.card .media{aspect-ratio:3/2}
+.card-body{display:flex;flex-direction:column;gap:14px;flex:1;padding:26px}
+.card h3{margin:0;font-size:22px;font-weight:800}
+.card p{margin:0}
+.card .sub{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{padding:6px 12px;border:1px solid var(--line-strong);border-radius:999px;font-size:14px}
+
+details summary{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 0;
+  list-style:none;cursor:pointer;font-weight:700;color:var(--accent-ink);
+}
+details summary::-webkit-details-marker{display:none}
+details summary::after{
+  content:"";width:8px;height:8px;margin-top:-3px;
+  border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:rotate(45deg);transition:transform .2s ease;
+}
+details[open] summary::after{transform:rotate(-135deg);margin-top:3px}
+details .more{display:grid;gap:14px;padding-top:12px}
+
+/* Kontakt */
+.contact-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.contact-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px;box-shadow:var(--shadow);
+}
+.contact-card h3{margin:0 0 16px;font-size:22px;font-weight:800}
+.contact-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.contact-list li{display:flex;align-items:flex-start;gap:14px}
+.contact-list .i{color:var(--accent-ink);margin-top:3px}
+.hours{width:100%;border-collapse:collapse}
+.hours th,.hours td{padding:11px 0;border-bottom:1px solid var(--line);text-align:left;font-weight:400}
+.hours td{text-align:right;font-weight:700}
+.hours tr:last-child th,.hours tr:last-child td{border-bottom:0}
+.contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.rating-card{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.score{font-size:64px;font-weight:800;line-height:1;letter-spacing:-.04em}
+.rating-card .stars{color:#b45309}
+[data-theme="dark"] .rating-card .stars{color:#f5b301}
+.rating-card .stars .i{width:22px;height:22px}
+.rating-card p{margin:6px 0 0;font-weight:700}
+.rating-card small{color:var(--muted)}
+.link-arrow{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  font-weight:700;color:var(--accent-ink);
+}
+.link-arrow .i{transition:transform .2s ease}
+.link-arrow:hover .i{transform:translateX(4px)}
+
+/* Footer */
+.site-footer{margin-top:104px;padding:64px 0 28px;background:var(--ink);color:var(--on-ink-muted)}
+.footer-grid{display:grid;gap:36px;grid-template-columns:1.5fr 1fr 1fr}
+.site-footer h3{
+  margin:0 0 14px;font-size:13px;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink);
+}
+.site-footer p{margin:0 0 8px}
+.site-footer a{color:#d5d8dc}
+.site-footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.footer-links{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.footer-brand .brand{margin-bottom:16px;color:var(--on-ink)}
+.legal{
+  display:grid;gap:36px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  margin-top:44px;padding-top:32px;border-top:1px solid rgba(255,255,255,.1);
+  font-size:13.5px;line-height:1.6;
+}
+.legal h3{font-size:14px;letter-spacing:0;text-transform:none}
+.copyright{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:13px}
+
+/* Mobile Aktionsleiste */
+.mobilebar{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;gap:8px;
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(11,12,15,.96);border-top:1px solid rgba(255,255,255,.12);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+}
+.mobilebar .btn{padding:12px 8px;font-size:15px;gap:.45em}
+
+@media (max-width:980px){
+  .nav{display:none}
+  .header-actions{margin-left:auto}
+}
+@media (max-width:860px){
+  .footer-grid{grid-template-columns:1fr}
+}
+@media (max-width:700px){
+  .nav,.header-actions .btn{display:none}
+  .header-actions{margin-left:auto}
+  .hero::before{
+    background-image:url('https://images.unsplash.com/photo-1550041473-d296a3a8a18a?auto=format&fit=crop&crop=entropy&w=1000&h=1100&q=70');
+  }
+  .hero::after{background:linear-gradient(180deg,rgba(11,12,15,.78),rgba(11,12,15,.9))}
+  .hero .wrap{padding-top:64px;padding-bottom:96px}
+  .hero .lead{font-size:17px}
+  .hero-cta .btn{width:100%}
+  .section{padding-top:68px}
+  .section-tight{padding-top:44px}
+  .site-footer{margin-top:80px;padding-bottom:calc(28px + 84px)}
+  .mobilebar{display:grid;grid-template-columns:1.25fr 1fr 1fr}
+}
+</style>
 </head>
 
 <body>
@@ -336,25 +429,34 @@ function toggleTheme(){
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
   <symbol id="i-device" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></symbol>
+  <symbol id="i-package" viewBox="0 0 24 24"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
 </svg>
 
 <a class="skip" href="#inhalt">Zum Inhalt springen</a>
 
-<header>
-  <div class="header-inner">
-    <a class="logo" href="#top" aria-label="K-Phone Handy Shop Essen – nach oben">
-      <svg class="i" aria-hidden="true"><use href="#i-device"/></svg>
-      <div>K-Phone <span>Handy Shop Essen</span></div>
+<header class="site-header dark-zone">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="K-Phone Handy Shop Essen – nach oben">
+      <span class="brand-mark"><svg class="i" aria-hidden="true"><use href="#i-device"/></svg></span>
+      <span class="brand-text"><strong>K-Phone</strong><small>Handy Shop Essen</small></span>
     </a>
     <nav class="nav" aria-label="Hauptnavigation">
-      <a href="#leistungen">Leistungen</a>
+      <a href="#reparatur">Reparatur</a>
+      <a href="#bereiche">Bereiche</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
-    <div class="actions">
-      <a class="btn" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
+    <div class="header-actions">
+      <a class="btn" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>0201 63268951</a>
+      <a class="btn btn-ghost" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
       <button type="button" class="toggle" onclick="toggleTheme()" aria-label="Zwischen hellem und dunklem Modus wechseln">
         <svg class="i ico-moon" aria-hidden="true"><use href="#i-moon"/></svg>
         <svg class="i ico-sun" aria-hidden="true"><use href="#i-sun"/></svg>
@@ -365,28 +467,29 @@ function toggleTheme(){
 
 <main id="inhalt">
 
-<section class="hero" id="top">
-  <div class="hero-inner">
+<section class="hero dark-zone" id="top">
+  <div class="wrap">
     <p class="eyebrow">Ihr Handy Shop in Essen</p>
-    <h1>K-Phone Handy Shop Essen</h1>
+    <h1>K-Phone <span class="accent">Handy Shop Essen</span></h1>
     <p class="lead">
       Erfahrung. Vertrauen. Service. Seit 2014.<br>
       Reparatur · Zubehör · Prepaid · An- &amp; Verkauf – alles an einem Ort.
     </p>
     <div class="hero-cta">
       <a class="btn btn-lg" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Jetzt anrufen</a>
-      <a class="btn btn-lg btn-light" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp schreiben</a>
+      <a class="btn btn-lg btn-ghost" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp schreiben</a>
     </div>
-    <ul class="badges">
-      <li class="badge"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Über 10 Jahre Erfahrung</li>
-      <li class="badge"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Top-Preise</li>
-      <li class="badge"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Neu &amp; Gebraucht verfügbar</li>
-      <li class="badge"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Versand-Reparatur möglich</li>
-    </ul>
+    <a class="rating-link" href="https://www.google.com/maps/search/?api=1&amp;query=K-Phone%20Handy%20Shop%20Essen%2C%20Viehofer%20Stra%C3%9Fe%2020%2C%2045127%20Essen" target="_blank" rel="noopener">
+      <span class="stars" aria-hidden="true">
+        <svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg>
+      </span>
+      <span class="rating-text"><b>4,8</b> von 5 · 456 Bewertungen auf Google</span>
+      <span class="rating-note">(Stand Oktober 2026)</span>
+    </a>
   </div>
 </section>
 
-<div class="infobar">
+<div class="wrap infobar">
   <div class="infobar-inner">
     <div class="info">
       <svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>
@@ -412,165 +515,207 @@ function toggleTheme(){
   </div>
 </div>
 
-<section class="section" id="leistungen">
-  <p class="label">Leistungen</p>
-  <h2>Unsere Bereiche</h2>
-
-  <div class="cards">
-
-    <!-- REPARATUR -->
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1639776739297-f7e1f21526f4?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=800&amp;h=533&amp;q=75" width="800" height="533" alt="" loading="lazy" decoding="async">
-      <div class="c">
-        <h3>Reparatur</h3>
-        <p>Wir reparieren nahezu alles, was technisch möglich ist.</p>
-        <details>
-          <summary>Leistungen anzeigen</summary>
-          <div class="more">
-            <p class="kicker">Seit 2014 – schnelle, faire &amp; transparente Reparaturen.</p>
-            <ul class="list">
-              <li>Display-Reparaturen (alle Modelle)</li>
-              <li>Akku-Tausch</li>
-              <li>Ladebuchse / USB-Port</li>
-              <li>Mikrofon &amp; Lautsprecher</li>
-              <li>Kamera vorne &amp; hinten</li>
-              <li>Power- &amp; Lautstärketasten</li>
-              <li>Wasserschaden-Behandlung</li>
-              <li>Software, Updates, Zurücksetzen</li>
-              <li>Datenrettung (wenn möglich)</li>
-              <li>Netz-, SIM- &amp; Empfangsprobleme</li>
-              <li>WLAN / Bluetooth</li>
-              <li>Face ID / Fingerprint (modellabhängig)</li>
-              <li>Tablet-Reparaturen</li>
-              <li>Laptop-Reparaturen (Hardware &amp; Software)</li>
-              <li>Versand-Reparatur nach Absprache</li>
-            </ul>
-          </div>
-        </details>
+<section class="section section-tight" aria-label="Ihre Vorteile">
+  <div class="wrap">
+    <div class="perks">
+      <div class="perk">
+        <div class="perk-icon"><svg class="i" aria-hidden="true"><use href="#i-award"/></svg></div>
+        <div><strong>Über 10 Jahre Erfahrung</strong><span>Schnelle, faire &amp; transparente Reparaturen seit 2014.</span></div>
       </div>
-    </article>
-
-    <!-- AN & VERKAUF -->
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1758914223873-9a952f4e3227?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=800&amp;h=533&amp;q=75" width="800" height="533" alt="" loading="lazy" decoding="async">
-      <div class="c">
-        <h3>An- &amp; Verkauf</h3>
-        <p>Top-Preise für Kauf &amp; Ankauf von Geräten.</p>
-        <details>
-          <summary>Details anzeigen</summary>
-          <div class="more">
-            <p>
-              Wir <b>verkaufen ständig Smartphones</b> (neu &amp; gebraucht).<br>
-              Wir <b>kaufen an</b>: Handys, PCs, Laptops, iPads &amp; Tablets.
-            </p>
-            <ul class="list">
-              <li>Faire &amp; transparente Bewertung im Laden</li>
-              <li>Sofortige Abwicklung</li>
-              <li>❌ Defekte Geräte kaufen wir nicht an</li>
-              <li>♻️ Fachgerechte Entsorgung defekter Geräte möglich</li>
-            </ul>
-          </div>
-        </details>
+      <div class="perk">
+        <div class="perk-icon"><svg class="i" aria-hidden="true"><use href="#i-tag"/></svg></div>
+        <div><strong>Top-Preise</strong><span>Für Kauf &amp; Ankauf von Geräten.</span></div>
       </div>
-    </article>
-
-    <!-- ZUBEHÖR -->
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1573739022854-abceaeb585dc?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=800&amp;h=533&amp;q=75" width="800" height="533" alt="" loading="lazy" decoding="async">
-      <div class="c">
-        <h3>Zubehör (XSSIVE &amp; mehr)</h3>
-        <p>Großes Sortiment sofort im Laden.</p>
-        <details>
-          <summary>Sortiment anzeigen</summary>
-          <div class="more">
-            <p class="kicker">
-              Großes Zubehör-Sortiment sofort verfügbar. Fokus auf die beliebte Marke <b>XSSIVE</b> sowie weitere Zubehör-Marken.
-            </p>
-            <p>
-              XSSIVE steht für ein breites Sortiment an Smartphone- und Technik-Accessoires
-              wie Kabel, Schutzgläser, Hüllen, Ladegeräte und mehr.
-            </p>
-            <ul class="list">
-              <li>Schutzglas: klar, dunkel, matt</li>
-              <li>Handyhüllen &amp; Cover</li>
-              <li>Ladekabel &amp; Netzteile (alt &amp; neu)</li>
-              <li>Kopfhörer (mit / ohne Kabel, Gaming)</li>
-              <li>Powerbanks</li>
-              <li>Auto- &amp; Fahrradhalter</li>
-              <li>Adapter, AUX, LAN, USB-Zubehör</li>
-              <li>Smartwatch- &amp; Gaming-Zubehör</li>
-            </ul>
-          </div>
-        </details>
+      <div class="perk">
+        <div class="perk-icon"><svg class="i" aria-hidden="true"><use href="#i-refresh"/></svg></div>
+        <div><strong>Neu &amp; Gebraucht verfügbar</strong><span>Wir verkaufen ständig Smartphones.</span></div>
       </div>
-    </article>
-
-    <!-- SIM -->
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1753385158278-387d4dda60c4?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=800&amp;h=533&amp;q=75" width="800" height="533" alt="" loading="lazy" decoding="async">
-      <div class="c">
-        <h3>SIM &amp; Prepaid</h3>
-        <p>Ortel &amp; Ay Yildiz – Aktivierung vor Ort.</p>
-        <details>
-          <summary>Details anzeigen</summary>
-          <div class="more">
-            <p>
-              Prepaid SIM-Karten &amp; Guthaben. Wir arbeiten direkt mit <b>Ortel</b> und <b>Ay Yildiz</b>.
-            </p>
-            <ul class="list">
-              <li>Aktivierung direkt im Laden</li>
-              <li>Aktivierung mit Ausweis</li>
-              <li>Persönliche Hilfe bei Einrichtung &amp; Fragen</li>
-            </ul>
-          </div>
-        </details>
+      <div class="perk">
+        <div class="perk-icon"><svg class="i" aria-hidden="true"><use href="#i-package"/></svg></div>
+        <div><strong>Versand-Reparatur möglich</strong><span>Nach Absprache.</span></div>
       </div>
-    </article>
+    </div>
+  </div>
+</section>
 
+<section class="section" id="reparatur">
+  <div class="wrap feature">
+    <div class="media">
+      <img src="https://images.unsplash.com/photo-1639776739297-f7e1f21526f4?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=1000&amp;h=750&amp;q=75" width="1000" height="750" alt="" loading="lazy" decoding="async">
+    </div>
+    <div>
+      <p class="label">Reparatur</p>
+      <h2>Reparatur – unsere Leistungen</h2>
+      <p class="section-lead">Wir reparieren nahezu alles, was technisch möglich ist. Seit 2014 – schnelle, faire &amp; transparente Reparaturen.</p>
+      <ul class="checks cols-2">
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Display-Reparaturen (alle Modelle)</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Akku-Tausch</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Ladebuchse / USB-Port</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Mikrofon &amp; Lautsprecher</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Kamera vorne &amp; hinten</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Power- &amp; Lautstärketasten</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Wasserschaden-Behandlung</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Software, Updates, Zurücksetzen</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Datenrettung (wenn möglich)</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Netz-, SIM- &amp; Empfangsprobleme</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>WLAN / Bluetooth</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Face ID / Fingerprint (modellabhängig)</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Tablet-Reparaturen</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Laptop-Reparaturen (Hardware &amp; Software)</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Versand-Reparatur nach Absprache</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-lg" href="https://wa.me/4915732000330?text=Hallo%2C%20ich%20habe%20eine%20Frage%20zu%20einer%20Reparatur."><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>Reparatur anfragen</a>
+        <a class="btn btn-lg btn-outline" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Anrufen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="bereiche">
+  <div class="wrap">
+    <p class="label">Unsere Bereiche</p>
+    <h2>Mehr als Reparatur</h2>
+    <p class="section-lead">An- &amp; Verkauf, Zubehör, SIM &amp; Prepaid – alles an einem Ort.</p>
+
+    <div class="cards">
+
+      <!-- AN & VERKAUF -->
+      <article class="card">
+        <div class="media">
+          <img src="https://images.unsplash.com/photo-1758914223873-9a952f4e3227?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=800&amp;h=533&amp;q=75" width="800" height="533" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="card-body">
+          <h3>An- &amp; Verkauf</h3>
+          <p class="sub">Top-Preise für Kauf &amp; Ankauf von Geräten.</p>
+          <p>
+            Wir <b>verkaufen ständig Smartphones</b> (neu &amp; gebraucht).<br>
+            Wir <b>kaufen an</b>: Handys, PCs, Laptops, iPads &amp; Tablets.
+          </p>
+          <ul class="checks">
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Faire &amp; transparente Bewertung im Laden</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Sofortige Abwicklung</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Fachgerechte Entsorgung defekter Geräte möglich</li>
+            <li class="no"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>Defekte Geräte kaufen wir nicht an</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- ZUBEHÖR -->
+      <article class="card">
+        <div class="media">
+          <img src="https://images.unsplash.com/photo-1573739022854-abceaeb585dc?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=800&amp;h=533&amp;q=75" width="800" height="533" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="card-body">
+          <h3>Zubehör (XSSIVE &amp; mehr)</h3>
+          <p class="sub">Großes Sortiment sofort im Laden.</p>
+          <ul class="chips">
+            <li>Schutzglas</li>
+            <li>Handyhüllen &amp; Cover</li>
+            <li>Ladekabel &amp; Netzteile</li>
+            <li>Kopfhörer</li>
+            <li>Powerbanks</li>
+          </ul>
+          <details>
+            <summary>Gesamtes Sortiment ansehen</summary>
+            <div class="more">
+              <p>
+                Großes Zubehör-Sortiment sofort verfügbar. Fokus auf die beliebte Marke <b>XSSIVE</b> sowie weitere Zubehör-Marken.
+                XSSIVE steht für ein breites Sortiment an Smartphone- und Technik-Accessoires
+                wie Kabel, Schutzgläser, Hüllen, Ladegeräte und mehr.
+              </p>
+              <ul class="checks">
+                <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Schutzglas: klar, dunkel, matt</li>
+                <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Handyhüllen &amp; Cover</li>
+                <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Ladekabel &amp; Netzteile (alt &amp; neu)</li>
+                <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Kopfhörer (mit / ohne Kabel, Gaming)</li>
+                <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Powerbanks</li>
+                <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Auto- &amp; Fahrradhalter</li>
+                <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Adapter, AUX, LAN, USB-Zubehör</li>
+                <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Smartwatch- &amp; Gaming-Zubehör</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <!-- SIM -->
+      <article class="card">
+        <div class="media">
+          <img src="https://images.unsplash.com/photo-1753385158278-387d4dda60c4?auto=format&amp;fit=crop&amp;crop=entropy&amp;w=800&amp;h=533&amp;q=75" width="800" height="533" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="card-body">
+          <h3>SIM &amp; Prepaid</h3>
+          <p class="sub">Ortel &amp; Ay Yildiz – Aktivierung vor Ort.</p>
+          <p>Prepaid SIM-Karten &amp; Guthaben. Wir arbeiten direkt mit <b>Ortel</b> und <b>Ay Yildiz</b>.</p>
+          <ul class="checks">
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Aktivierung direkt im Laden</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Aktivierung mit Ausweis</li>
+            <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Persönliche Hilfe bei Einrichtung &amp; Fragen</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
   </div>
 </section>
 
 <section class="section" id="kontakt">
-  <p class="label">So erreichen Sie uns</p>
-  <h2>Kontakt</h2>
+  <div class="wrap">
+    <p class="label">So erreichen Sie uns</p>
+    <h2>Kontakt</h2>
 
-  <div class="contact-grid">
-    <div class="contact-card">
-      <h3>K-Phone Handy Shop Essen</h3>
-      <ul class="contact-list">
-        <li>
-          <svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>
-          <span>Viehofer Straße 20<br>45127 Essen</span>
-        </li>
-        <li>
-          <svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>
-          <span>Tel: <a class="link" href="tel:+4920163268951">0201 63268951</a></span>
-        </li>
-        <li>
-          <svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>
-          <span>WhatsApp: <a class="link" href="https://wa.me/4915732000330">+49 157 32000330</a></span>
-        </li>
-        <li>
-          <svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>
-          <span>E-Mail: <a class="link" href="mailto:k.phone@web.de">k.phone@web.de</a></span>
-        </li>
-      </ul>
-    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>K-Phone Handy Shop Essen</h3>
+        <ul class="contact-list">
+          <li>
+            <svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>
+            <span>Viehofer Straße 20<br>45127 Essen</span>
+          </li>
+          <li>
+            <svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>
+            <span>Tel: <a class="link" href="tel:+4920163268951">0201 63268951</a></span>
+          </li>
+          <li>
+            <svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>
+            <span>WhatsApp: <a class="link" href="https://wa.me/4915732000330">+49 157 32000330</a></span>
+          </li>
+          <li>
+            <svg class="i" aria-hidden="true"><use href="#i-mail"/></svg>
+            <span>E-Mail: <a class="link" href="mailto:k.phone@web.de">k.phone@web.de</a></span>
+          </li>
+        </ul>
+        <div class="contact-actions">
+          <a class="btn" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Anrufen</a>
+          <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&amp;query=Viehofer%20Stra%C3%9Fe%2020%2C%2045127%20Essen" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Route planen</a>
+        </div>
+      </div>
 
-    <div class="contact-card">
-      <h3>Öffnungszeiten</h3>
-      <table class="hours">
-        <caption class="sr-only">Öffnungszeiten</caption>
-        <tbody>
-          <tr><th scope="row">Montag – Freitag</th><td>09:00 – 21:30</td></tr>
-          <tr><th scope="row">Samstag</th><td>10:00 – 21:30</td></tr>
-          <tr><th scope="row">Sonntag</th><td>geschlossen</td></tr>
-        </tbody>
-      </table>
-      <div class="contact-actions">
-        <a class="btn" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Anrufen</a>
-        <a class="btn" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp schreiben</a>
-        <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Viehofer%20Stra%C3%9Fe%2020%2C%2045127%20Essen" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Route planen</a>
+      <div class="contact-card">
+        <h3>Öffnungszeiten</h3>
+        <table class="hours">
+          <caption class="sr-only">Öffnungszeiten</caption>
+          <tbody>
+            <tr><th scope="row">Montag – Freitag</th><td>09:00 – 21:30</td></tr>
+            <tr><th scope="row">Samstag</th><td>10:00 – 21:30</td></tr>
+            <tr><th scope="row">Sonntag</th><td>geschlossen</td></tr>
+          </tbody>
+        </table>
+        <div class="contact-actions">
+          <a class="btn" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp schreiben</a>
+        </div>
+      </div>
+
+      <div class="contact-card rating-card">
+        <h3>Bewertungen</h3>
+        <div class="score">4,8</div>
+        <span class="stars" aria-label="4,8 von 5 Sternen">
+          <svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg>
+        </span>
+        <p>456 Bewertungen auf Google</p>
+        <small>Stand Oktober 2026</small>
+        <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=K-Phone%20Handy%20Shop%20Essen%2C%20Viehofer%20Stra%C3%9Fe%2020%2C%2045127%20Essen" target="_blank" rel="noopener">Alle Bewertungen ansehen<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </div>
@@ -578,17 +723,32 @@ function toggleTheme(){
 
 </main>
 
-<a class="whatsapp" href="https://wa.me/4915732000330" aria-label="Per WhatsApp schreiben">
-  <svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp
-</a>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <small>
-      © K-Phone Handy Shop Essen · seit 2014 ·
-      <a href="#impressum">Impressum</a> ·
-      <a href="#datenschutz">Datenschutz</a>
-    </small>
+<footer class="site-footer dark-zone">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="K-Phone Handy Shop Essen – nach oben">
+          <span class="brand-mark"><svg class="i" aria-hidden="true"><use href="#i-device"/></svg></span>
+          <span class="brand-text"><strong>K-Phone</strong><small>Handy Shop Essen</small></span>
+        </a>
+        <p>Reparatur · Zubehör · Prepaid · An- &amp; Verkauf – seit 2014 in Essen.</p>
+      </div>
+      <div>
+        <h3>Seiten</h3>
+        <ul class="footer-links">
+          <li><a href="#reparatur">Reparatur</a></li>
+          <li><a href="#bereiche">Bereiche</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Rechtliches</h3>
+        <ul class="footer-links">
+          <li><a href="#impressum">Impressum</a></li>
+          <li><a href="#datenschutz">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
 
     <div class="legal">
       <section id="impressum">
@@ -640,8 +800,16 @@ function toggleTheme(){
         </p>
       </section>
     </div>
+
+    <p class="copyright">© K-Phone Handy Shop Essen · seit 2014</p>
   </div>
 </footer>
+
+<nav class="mobilebar dark-zone" aria-label="Schnellkontakt">
+  <a class="btn" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Anrufen</a>
+  <a class="btn btn-ghost" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
+  <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Viehofer%20Stra%C3%9Fe%2020%2C%2045127%20Essen" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Route</a>
+</nav>
 
 </body>
 </html>
