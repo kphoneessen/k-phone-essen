@@ -383,7 +383,7 @@ function showErr(t){ var e=$('#formErr'); if(e)e.innerHTML=t?'<div class="msg er
 
 function indexOf(c){
   var dv=getDevices(c);
-  return [c.nr,c.kundenNr,c.vorname,c.nachname,c.vorname+' '+c.nachname,c.nachname+' '+c.vorname,c.ausweisNr,deDate(c.datum),c.datum,
+  return [c.vorname,c.nachname,c.vorname+' '+c.nachname,c.nachname+' '+c.vorname,c.ausweisNr,deDate(c.geburtsdatum),c.geburtsdatum,deDate(c.datum),c.datum,
     dv.map(function(x){return [x.modell,x.imei,x.serial,x.art,x.defekt].join(' ')}).join(' ')].join(' ').toLowerCase();
 }
 function renderList(){
@@ -400,7 +400,7 @@ function renderList(){
       return '<li><button class="item" type="button" data-open="'+esc(c.id)+'"><span class="n">'+esc(c.nachname)+', '+esc(c.vorname)+'</span><span class="p">'+esc(money(c.preis))+'</span>'+
         '<span class="s">'+esc(dv.map(function(x){return x.modell}).join(', '))+'</span>'+
         '<span class="s">IMEI '+esc(dv.map(function(x){return x.imei}).join(', '))+'</span>'+
-        '<span class="s">'+esc(deDate(c.datum))+' · '+esc(c.nr)+' · '+esc(c.kundenNr)+'</span></button></li>';
+        '<span class="s">Gekauft am '+esc(deDate(c.datum))+(c.geburtsdatum?' · geb. '+esc(deDate(c.geburtsdatum)):'')+'</span></button></li>';
     }).join('');
   }
   var ft=$('#homeFoot'); if(!ft){ ft=document.createElement('div'); ft.className='foot'; ft.id='homeFoot'; ft.innerHTML='<div class="in-foot"><button class="btn" id="btnNew" type="button">Neuer Kaufvertrag</button></div>'; document.body.appendChild(ft); $('#btnNew').onclick=startNew; }
@@ -461,7 +461,7 @@ function findCustomer(){
 }
 function custHint(){
   var m=findCustomer(), h=$('#custHint');
-  h.textContent=m.length?('Bekannter Kunde '+m[0].kundenNr+' · bisher '+m.length+(m.length===1?' Vertrag':' Verträge')):'';
+  h.textContent=m.length?('Bekannter Kunde · bisher '+m.length+(m.length===1?' Vertrag':' Verträge')):'';
 }
 function resetCommon(){
   aiKeys={}; step=0; $('#ocrMsg').innerHTML=''; $('#ocrNote').innerHTML=''; showErr('');
@@ -480,7 +480,7 @@ function startEdit(c){
   imgs={front:{ref:c.idFront,dataUrl:store.src(c.idFront)},back:{ref:c.idBack,dataUrl:store.src(c.idBack)}};
   setSlot('front',imgs.front); setSlot('back',imgs.back);
   sigs={kunde:c.sigKunde||'',shop:c.sigShop||''};
-  $('#formTitle').textContent='Vertrag bearbeiten · '+c.nr; $('#demoRow').hidden=true;
+  $('#formTitle').textContent='Vertrag bearbeiten'; $('#demoRow').hidden=true;
   updateOcrBtn(); bindFields(); show('form'); renderSteps();
 }
 function resetSlot(k){
@@ -595,7 +595,7 @@ function openDetail(id,mode){
     return '<h3 class="subh">'+(dv.length>1?'Artikel '+(i+1):'Artikel')+'</h3>'+kv([['Art des Artikels',d.art],['Model',d.modell],['Zustand',d.zustand+(d.defekt?' · '+d.defekt:'')],['IMEI',d.imei],['Geräte-/Serien-Nr.',d.serial]]);
   }).join('');
   $('#vDetail').innerHTML=
-    '<div class="bar" style="margin-top:16px"><button class="btn ghost sm" id="dBack" type="button">← Alle Verträge</button><span class="muted small">'+esc(c.nr)+' · '+esc(c.kundenNr)+'</span></div>'+
+    '<div class="bar" style="margin-top:16px"><button class="btn ghost sm" id="dBack" type="button">← Alle Verträge</button></div>'+
     (mode==='new'?'<div class="msg ok">Vertrag gespeichert.</div>':'')+(mode==='edit'?'<div class="msg ok">Änderungen gespeichert.</div>':'')+
     '<h1 style="margin-top:6px">'+esc(c.nachname)+', '+esc(c.vorname)+'</h1>'+
     '<div id="dMsg"></div>'+
@@ -607,19 +607,31 @@ function openDetail(id,mode){
     '<div class="card"><button class="btn danger sm" id="dDel" type="button">Vertrag löschen</button><div id="dDelBox"></div></div>';
   show('detail');
 }
-function pdfName(c){ return 'Kaufvertrag_'+c.nr+'_'+slug(c.nachname)+'_'+c.datum+'.pdf'; }
+function pdfName(c){ return 'Kaufvertrag_'+slug(c.nachname)+'_'+slug(c.vorname)+'_'+c.datum+'.pdf'; }
 function saveBlob(blob,name){
   if(caps.downloads){ return caps.downloads.save({filename:name,data:blob}).then(function(r){return r.status}); }
   var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); a.remove(); return Promise.resolve('saved');
 }
+var lastPdf=null;
+function pdfFile(){ return new File([lastPdf.blob],lastPdf.name,{type:'application/pdf'}); }
+function canShareFile(){ try{ return !!(navigator.share&&navigator.canShare&&lastPdf&&navigator.canShare({files:[pdfFile()]})); }catch(e){ return false; } }
 function doPdf(){
   var b=$('#dPdf'), m=$('#dMsg'); b.disabled=true; b.textContent='PDF wird erstellt …'; m.innerHTML='';
-  makePdf(current).then(function(blob){ return saveBlob(blob,pdfName(current)); }).then(function(){
-    m.innerHTML='<div class="msg ok">PDF bereit. Wenn dein Gerät nach dem Speicherort fragt, wähle einen Ordner oder „Teilen“.</div>';
+  makePdf(current).then(function(blob){
+    lastPdf={blob:blob,name:pdfName(current)};
+    m.innerHTML='<div class="msg ok">PDF fertig. Wähle, was du damit machen willst:</div><div style="display:grid;gap:10px;margin-bottom:14px">'+
+      (canShareFile()?'<button class="btn block" id="pShare" type="button">Senden / Drucken / WhatsApp …</button>':'')+
+      '<button class="btn '+(canShareFile()?'ghost ':'')+'block" id="pOpen" type="button">PDF öffnen (ansehen, drucken)</button>'+
+      '<button class="btn ghost block" id="pSave" type="button">PDF speichern</button></div><div id="pMsg"></div>';
   }).catch(function(e){
-    var t=(e&&e.code==='declined')?'Speichern abgebrochen.':'PDF konnte nicht erstellt werden: '+((e&&e.message)||'Fehler');
-    m.innerHTML='<div class="msg err" role="alert">'+esc(t)+'</div>';
+    m.innerHTML='<div class="msg err" role="alert">'+esc('PDF konnte nicht erstellt werden: '+((e&&e.message)||'Fehler'))+'</div>';
   }).then(function(){ b.disabled=false; b.textContent='PDF mit Ausweis und Unterschriften erstellen'; });
+}
+function pdfAction(id){
+  if(!lastPdf)return; var pm=$('#pMsg');
+  if(id==='pShare'){ navigator.share({files:[pdfFile()],title:lastPdf.name}).catch(function(e){ if(e&&e.name!=='AbortError')pm.innerHTML='<div class="msg err">Teilen nicht möglich. Nimm „PDF speichern“.</div>'; }); }
+  if(id==='pOpen'){ var u=URL.createObjectURL(lastPdf.blob), w=window.open(u,'_blank'); if(!w){ location.href=u; } }
+  if(id==='pSave'){ saveBlob(lastPdf.blob,lastPdf.name).then(function(){ pm.innerHTML='<div class="msg ok">Gespeichert. Du findest die Datei im Ordner „Downloads“ bzw. unter „Dateien“.</div>'; }).catch(function(){}); }
 }
 
 /* ---------- PDF (Aufbau wie der Papier-Vertrag) ---------- */
@@ -642,8 +654,7 @@ function makePdf(c){
     d.setFontSize(11); T('Handys - Internet - Telefonkarten',W/2,31,{align:'center'});
     var l1='Ala Rasho   Viehoferstr.20 45127 Essen'; T(l1,W/2,37.5,{align:'center'}); var lw1=d.getTextWidth(l1); d.setLineWidth(.35); d.setDrawColor(20); d.line(W/2-lw1/2,38.8,W/2+lw1/2,38.8);
     d.setFontSize(12); var tt='Kaufvertrag für bewegliche Artikel Neu und Gebrauchtwaren'; T(tt,M,50); var tw=d.getTextWidth(tt); d.setLineWidth(.45); d.line(M,51.4,M+tw,51.4);
-    d.setFont('helvetica','normal'); d.setFontSize(8.5); ink(90); T('Vertrags-Nr. '+c.nr+'  ·  Kunden-Nr. '+c.kundenNr,R,45,{align:'right'});
-    d.setFont('helvetica','bold'); d.setFontSize(10.5); ink(10); T('Käufer:',M,62);
+        d.setFont('helvetica','bold'); d.setFontSize(10.5); ink(10); T('Käufer:',M,62);
     d.setFontSize(11); T('K-Phone',M+30,60.5); T('An und Verkauf',M+30,65.5);
     d.setFont('helvetica','normal'); d.setFontSize(10.5); T('Inhaber: Ala Rasho',M+30,70.5); T('Viehoferstr.20  45127 Essen',M+30,75.5);
     y=n===3?85:89; var half=(R-M-6)/2;
@@ -679,7 +690,7 @@ function makePdf(c){
     d.setFontSize(8.5); ink(110); T(c.vorname+' '+c.nachname,M,sy+9.5); T('K-Phone, Ala Rasho',R-bw,sy+9.5);
     d.addPage();
     d.setFont('helvetica','bold'); d.setFontSize(13); ink(10); T('Ausweiskopie',M,18);
-    d.setFont('helvetica','normal'); d.setFontSize(9); ink(90); T('Kaufvertrag '+c.nr+' · '+c.nachname+', '+c.vorname+' · '+deDate(c.datum),M,23.5);
+    d.setFont('helvetica','normal'); d.setFontSize(9); ink(90); T('Kaufvertrag · '+c.nachname+', '+c.vorname+' · '+deDate(c.datum),M,23.5);
     function idBox(im,label,top){
       var bw2=W-2*M, bh2=108;
       d.setFont('helvetica','bold'); d.setFontSize(9); ink(60); T(label,M,top-2);
@@ -689,9 +700,7 @@ function makePdf(c){
       T('KOPIE',M+bw2/2,top+bh2/2+14,{align:'center',angle:22}); d.setGState(new d.GState({opacity:1}));
     }
     idBox(ims[0],'Vorderseite',36); idBox(ims[1],'Rückseite',158);
-    d.setFont('helvetica','normal'); d.setFontSize(8); ink(110);
-    var ln=d.splitTextToSize('Kopie des Ausweises, angefertigt mit Einwilligung des Inhabers am '+deDate(c.datum)+' zur Dokumentation des Ankaufs. Weitergabe an Dritte nicht zulässig.',W-2*M); T(ln,M,278);
-    var np=d.getNumberOfPages(); for(var i=1;i<=np;i++){ d.setPage(i); d.setFont('helvetica','normal'); d.setFontSize(8); ink(130); T(c.nr+' · Seite '+i+' von '+np,R,291,{align:'right'}); }
+    var np=d.getNumberOfPages(); for(var i=1;i<=np;i++){ d.setPage(i); d.setFont('helvetica','normal'); d.setFontSize(8); ink(130); T('Seite '+i+' von '+np,R,291,{align:'right'}); }
     return d.output('blob');
   });
 }
@@ -790,6 +799,7 @@ function wire(){
   $('#vDetail').addEventListener('click',function(e){
     if(e.target.closest('#dBack')){ show('home'); renderList(); return; }
     if(e.target.closest('#dPdf')){ doPdf(); return; }
+    var pa=e.target.closest('#pShare,#pOpen,#pSave'); if(pa){ pdfAction(pa.id); return; }
     if(e.target.closest('#dEdit')){ startEdit(current); return; }
     var z=e.target.closest('[data-zoom]'); if(z){ var lb=document.createElement('div'); lb.className='lightbox'; lb.innerHTML='<img alt="Ausweis" src="'+esc(z.getAttribute('data-zoom'))+'"><button class="btn sm" type="button">Schließen</button>'; lb.onclick=function(){lb.remove()}; document.body.appendChild(lb); return; }
     if(e.target.closest('#dDel')){ $('#dDelBox').innerHTML='<p class="msg err">Wirklich löschen? Das lässt sich nicht rückgängig machen.</p><div style="display:flex;gap:10px"><button class="btn danger sm" id="dDelYes" type="button">Ja, löschen</button><button class="btn ghost sm" id="dDelNo" type="button">Abbrechen</button></div>'; return; }
