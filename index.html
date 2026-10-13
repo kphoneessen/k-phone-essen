@@ -269,7 +269,7 @@ img{max-width:100%;display:block}
 /* Vorteile */
 .perks{display:grid;gap:16px;grid-template-columns:1fr}
 @media (min-width:560px){.perks{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:1000px){.perks{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:1000px){.perks{grid-template-columns:repeat(3,1fr)}}
 .perk{
   display:flex;gap:16px;align-items:flex-start;padding:22px;
   background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -295,7 +295,7 @@ img{max-width:100%;display:block}
     linear-gradient(180deg,rgba(11,12,15,0) 45%,rgba(11,12,15,.5) 100%),
     linear-gradient(135deg,rgba(196,22,28,.22),rgba(196,22,28,0) 62%);
 }
-.card:hover .media img,.feature:hover .media img{
+.card:hover .media img,.feature:hover .media img,.media.in-view img{
   filter:grayscale(.15) contrast(1.05) brightness(1);transform:scale(1.04);
 }
 
@@ -505,11 +505,11 @@ details .more{display:grid;gap:14px;padding-top:12px}
       <a href="#reparatur">Reparatur</a>
       <a href="#ablauf">Ablauf</a>
       <a href="#bereiche">Bereiche</a>
+      <a href="#firmen">Für Firmen</a>
+      <a href="#faq">Fragen</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
     <div class="header-actions">
-      <a class="btn" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>0201 63268951</a>
-      <a class="btn btn-ghost" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
       <button type="button" class="toggle" onclick="toggleTheme()" aria-label="Zwischen hellem und dunklem Modus wechseln">
         <svg class="i ico-moon" aria-hidden="true"><use href="#i-moon"/></svg>
         <svg class="i ico-sun" aria-hidden="true"><use href="#i-sun"/></svg>
@@ -542,7 +542,6 @@ details .more{display:grid;gap:14px;padding-top:12px}
         <svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg>
       </span>
       <span class="rating-text"><b>4,8</b> von 5 · 456 Bewertungen auf Google</span>
-      <span class="rating-note">(Stand Oktober 2026)</span>
     </a>
   </div>
 </section>
@@ -585,12 +584,8 @@ details .more{display:grid;gap:14px;padding-top:12px}
         <div><strong>Direkt im Shop repariert</strong><span>Diagnose und Reparatur machen wir vor Ort in unserem Laden.</span></div>
       </div>
       <div class="perk">
-        <div class="perk-icon"><svg class="i" aria-hidden="true"><use href="#i-tag"/></svg></div>
-        <div><strong>Klarer Preis vorab</strong><span>Sie erfahren den Preis, bevor repariert wird.</span></div>
-      </div>
-      <div class="perk">
         <div class="perk-icon"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg></div>
-        <div><strong>Meist in 1–2 Stunden</strong><span>Die meisten Reparaturen sind schnell erledigt. Kein Termin nötig.</span></div>
+        <div><strong>Meist in 1–2 Stunden</strong><span>Die meisten Reparaturen sind schnell erledigt.</span></div>
       </div>
     </div>
   </div>
@@ -605,27 +600,15 @@ details .more{display:grid;gap:14px;padding-top:12px}
       <p class="label">Reparatur</p>
       <h2>Reparatur – unsere Leistungen</h2>
       <p class="section-lead">Wir reparieren nahezu alles, was technisch möglich ist – direkt bei uns im Shop. Schnell, fair &amp; transparent.</p>
-      <ul class="checks cols-2">
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Display-Reparaturen (alle Modelle)</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Akku-Tausch</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Ladebuchse / USB-Port</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Mikrofon &amp; Lautsprecher</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Kamera vorne &amp; hinten</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Power- &amp; Lautstärketasten</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Wasserschaden-Behandlung</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Software, Updates, Zurücksetzen</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Datenrettung (wenn möglich)</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Netz-, SIM- &amp; Empfangsprobleme</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>WLAN / Bluetooth</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Face ID / Fingerprint (modellabhängig)</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Tablet-Reparaturen</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Laptop-Reparaturen (Hardware &amp; Software)</li>
-        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Versand-Reparatur nach Absprache</li>
+      <ul class="checks">
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Display &amp; Akku</strong> – alle gängigen Modelle</span></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Anschlüsse &amp; Tasten</strong> – Ladebuchse, Power- und Lautstärketasten</span></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Kamera &amp; Audio</strong> – Kamera vorne und hinten, Mikrofon, Lautsprecher</span></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Wasserschaden &amp; Datenrettung</strong> – Behandlung, Datenrettung wenn möglich</span></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Software &amp; Netz</strong> – Updates, Zurücksetzen, SIM, WLAN, Bluetooth, Face ID / Fingerprint (modellabhängig)</span></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Tablets &amp; Laptops</strong> – Hardware &amp; Software</span></li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg><span><strong>Versand-Reparatur</strong> – nach Absprache</span></li>
       </ul>
-      <div class="cta-row">
-        <a class="btn btn-lg" href="https://wa.me/4915732000330?text=Hallo%2C%20ich%20habe%20eine%20Frage%20zu%20einer%20Reparatur."><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>Reparatur anfragen</a>
-        <a class="btn btn-lg btn-outline" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Anrufen</a>
-      </div>
     </div>
   </div>
 </section>
@@ -654,10 +637,6 @@ details .more{display:grid;gap:14px;padding-top:12px}
     </ol>
     <div class="walkin">
       <p><strong>Kein Termin nötig.</strong> Kommen Sie einfach vorbei, rufen Sie an oder schreiben Sie uns bei WhatsApp.</p>
-      <div class="walkin-actions">
-        <a class="btn" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Anrufen</a>
-        <a class="btn btn-ghost" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
-      </div>
     </div>
   </div>
 </section>
@@ -677,7 +656,7 @@ details .more{display:grid;gap:14px;padding-top:12px}
         </div>
         <div class="card-body">
           <h3>An- &amp; Verkauf</h3>
-          <p class="sub">Top-Preise für Kauf &amp; Ankauf von Geräten.</p>
+          <p class="sub">Faire Preise für Kauf &amp; Ankauf von Geräten.</p>
           <p>
             Wir <b>verkaufen ständig Smartphones</b> (neu &amp; gebraucht).<br>
             Wir <b>kaufen an</b>: Handys, PCs, Laptops, iPads &amp; Tablets.
@@ -686,7 +665,6 @@ details .more{display:grid;gap:14px;padding-top:12px}
             <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Faire &amp; transparente Bewertung im Laden</li>
             <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Sofortige Abwicklung</li>
             <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Defekte Geräte nehmen wir zur fachgerechten Entsorgung an</li>
-            <li class="no"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg>Kein Ankauf defekter Geräte</li>
           </ul>
         </div>
       </article>
@@ -835,7 +813,6 @@ details .more{display:grid;gap:14px;padding-top:12px}
           </li>
         </ul>
         <div class="contact-actions">
-          <a class="btn" href="tel:+4920163268951"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Anrufen</a>
           <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&amp;query=Viehofer%20Stra%C3%9Fe%2020%2C%2045127%20Essen" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-pin"/></svg>Route planen</a>
         </div>
       </div>
@@ -850,21 +827,8 @@ details .more{display:grid;gap:14px;padding-top:12px}
             <tr><th scope="row">Sonntag</th><td>geschlossen</td></tr>
           </tbody>
         </table>
-        <div class="contact-actions">
-          <a class="btn" href="https://wa.me/4915732000330"><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp schreiben</a>
-        </div>
       </div>
 
-      <div class="contact-card rating-card">
-        <h3>Bewertungen</h3>
-        <div class="score">4,8</div>
-        <span class="stars" aria-label="4,8 von 5 Sternen">
-          <svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg><svg class="i i-fill" aria-hidden="true"><use href="#i-star"/></svg>
-        </span>
-        <p>456 Bewertungen auf Google</p>
-        <small>Stand Oktober 2026</small>
-        <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=K-Phone%20Handy%20Shop%20Essen%2C%20Viehofer%20Stra%C3%9Fe%2020%2C%2045127%20Essen" target="_blank" rel="noopener">Alle Bewertungen ansehen<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </div>
     </div>
   </div>
 </section>
@@ -967,6 +931,14 @@ details .more{display:grid;gap:14px;padding-top:12px}
 </nav>
 
 <script>
+// Handy: Fotos bekommen ihre Farbe, sobald sie beim Scrollen in der Bildschirmmitte sind (wie Hover am PC)
+(function(){
+  if(!window.IntersectionObserver||!window.matchMedia||!matchMedia('(hover:none)').matches)return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){e.target.classList.toggle('in-view',e.isIntersecting);});
+  },{rootMargin:'-30% 0px -30% 0px',threshold:0});
+  document.querySelectorAll('.media').forEach(function(m){io.observe(m);});
+})();
 // Impressum und Datenschutz klappen erst auf Klick auf (auch über die Links im Footer)
 (function(){
   function openLegal(){
