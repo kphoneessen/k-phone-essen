@@ -559,19 +559,21 @@ function makePdf(c){
     }
     sig(M,c.sigKunde,SIGN_LEFT);
     sig(R-bw,c.sigShop,'Käufer An und Verkauf');
-    d.setFontSize(8.5); ink(110); T(c.vorname+' '+c.nachname,M,sy+9.5); T('K-Phone, Ala Rasho',R-bw,sy+9.5);
+    d.setFontSize(8.5); ink(110); T(c.vorname+' '+c.nachname,M,sy+9.5); T('K-Phone',R-bw,sy+9.5);
     d.addPage();
     d.setFont('helvetica','bold'); d.setFontSize(13); ink(10); T('Ausweiskopie',M,18);
     d.setFont('helvetica','normal'); d.setFontSize(9); ink(90); T('Kaufvertrag · '+c.nachname+', '+c.vorname+' · '+deDate(c.datum),M,23.5);
     function idBox(im,label,top){
-      var bw2=W-2*M, bh2=108;
+      var bw2=85.6, bh2=54;
+      if(im){ var asp=im.w/im.h; if(asp<1.4||asp>1.8){ bw2=125; bh2=88; } }
       d.setFont('helvetica','bold'); d.setFontSize(9); ink(60); T(label,M,top-2);
-      d.setDrawColor(200); d.setLineWidth(.3); d.rect(M,top,bw2,bh2);
-      if(im){ var s2=Math.min((bw2-4)/im.w,(bh2-4)/im.h), w=im.w*s2, h=im.h*s2; try{ d.addImage(im.data,'JPEG',M+(bw2-w)/2,top+(bh2-h)/2,w,h,undefined,'FAST'); }catch(e){} }
-      d.setGState(new d.GState({opacity:0.22})); d.setTextColor(196,22,28); d.setFont('helvetica','bold'); d.setFontSize(64);
-      T('KOPIE',M+bw2/2,top+bh2/2+14,{align:'center',angle:22}); d.setGState(new d.GState({opacity:1}));
+      d.setDrawColor(190); d.setLineWidth(.2); d.rect(M,top,bw2,bh2);
+      if(im){ var s2=Math.min((bw2-1)/im.w,(bh2-1)/im.h), w=im.w*s2, h=im.h*s2; try{ d.addImage(im.data,'JPEG',M+(bw2-w)/2,top+(bh2-h)/2,w,h,undefined,'FAST'); }catch(e){} }
+      d.setGState(new d.GState({opacity:0.2})); d.setTextColor(90,90,90); d.setFont('helvetica','bold'); d.setFontSize(30);
+      T('KOPIE',M+bw2/2,top+bh2/2+5,{align:'center',angle:22}); d.setGState(new d.GState({opacity:1}));
+      return top+bh2;
     }
-    idBox(ims[0],'Vorderseite',36); idBox(ims[1],'Rückseite',158);
+    var e1=idBox(ims[0],'Vorderseite',36); idBox(ims[1],'Rückseite',e1+14);
     var np=d.getNumberOfPages(); for(var i=1;i<=np;i++){ d.setPage(i); d.setFont('helvetica','normal'); d.setFontSize(8); ink(130); T('Seite '+i+' von '+np,R,291,{align:'right'}); }
     return d.output('blob');
   });
