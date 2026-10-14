@@ -175,23 +175,25 @@ document.addEventListener('keydown',function(e){if(!document.getElementById('loc
   <header class="top">
     <div class="brand">
       <div class="mark"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
-      <div><b>K-Phone Ankauf</b><small>Kaufverträge Handy Shop Essen</small></div>
+      <div><b>K-Phone Ankauf</b><small>Kaufvertrag Handy Shop Essen</small></div>
     </div>
-    <span class="chip test" id="chip">Verbinde …</span>
+    <span class="chip" id="chip">Nichts wird gespeichert</span>
   </header>
 
-  <!-- Startseite -->
+  <!-- Start -->
   <section id="vHome">
-    <h1>Kaufverträge</h1>
-    <div class="search">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="20" y1="20" x2="16" y2="16"/></svg>
-      <input id="q" type="search" placeholder="Suchen: Name, Kundennr., IMEI, Datum …" autocomplete="off" aria-label="Suche">
+    <h1>Kaufvertrag</h1>
+    <div class="card">
+      <h2>So geht es</h2>
+      <ol style="margin:8px 0 0;padding-left:20px;display:grid;gap:4px">
+        <li>Ausweis vorne und hinten fotografieren</li>
+        <li>Angaben prüfen, Geräte eintragen</li>
+        <li>Verkäufer und Käufer unterschreiben</li>
+        <li>PDF erstellen, senden oder drucken</li>
+      </ol>
+      <p class="muted small" style="margin:12px 0 0">Es wird nichts gespeichert. Alle Daten, Fotos und Unterschriften stehen nur so lange im Browser, bis du „Alles löschen“ tippst oder die Seite schließt. Speichere oder drucke das PDF deshalb vorher.</p>
     </div>
-    <div class="bar">
-      <span class="muted small" id="count"></span>
-      <button class="btn ghost sm" id="btnBackup" type="button">Datensicherung (ohne Fotos)</button>
-    </div>
-    <ul class="list" id="list"></ul>
+    <button class="btn block" id="btnNew" type="button">Neuer Kaufvertrag</button>
   </section>
 
   <!-- Formular -->
@@ -202,14 +204,14 @@ document.addEventListener('keydown',function(e){if(!document.getElementById('loc
     <div class="step" data-step="0">
       <div class="card">
         <h2>Ausweis fotografieren</h2>
-        <p class="muted small" style="margin:0 0 12px">Vorderseite und Rückseite. Tippe auf ein Feld, die Kamera öffnet sich. Die Fotos kommen als Kopie auf Seite 2 des PDFs.</p>
+        <p class="muted small" style="margin:0 0 12px">Vorderseite und Rückseite. Tippe auf ein Feld, die Kamera öffnet sich. Die Fotos kommen als Kopie auf Seite 2 des PDFs. Für das Auslesen muss die Zeile mit den Buchstaben und Zahlen (&lt;&lt;&lt;) unten auf dem Ausweis scharf zu sehen sein.</p>
         <div class="photos">
           <label class="slot" id="slotFront"><div><b>Vorderseite</b><span class="muted small">antippen zum Fotografieren</span></div><input type="file" accept="image/*" capture="environment" data-photo="front"></label>
           <label class="slot" id="slotBack"><div><b>Rückseite</b><span class="muted small">antippen zum Fotografieren</span></div><input type="file" accept="image/*" capture="environment" data-photo="back"></label>
         </div>
         <div id="ocrBox" style="margin-top:14px">
-          <button class="btn block" id="btnOcr" type="button" disabled>Daten aus Ausweis auslesen</button>
-          <p class="hint" id="ocrHint">Erst beide Seiten fotografieren.</p>
+          <button class="btn block" id="btnOcr" type="button" disabled>Daten aus Ausweis lesen</button>
+          <p class="hint" id="ocrHint">Erst beide Seiten fotografieren. Das Lesen läuft nur auf deinem Gerät, die Fotos werden nicht hochgeladen. Beim ersten Mal wird ein Lesemodul geladen (Internet nötig).</p>
         </div>
         <div id="ocrMsg"></div>
       </div>
@@ -220,7 +222,6 @@ document.addEventListener('keydown',function(e){if(!document.getElementById('loc
       <div class="card">
         <h2>Verkäufer</h2>
         <div id="ocrNote"></div>
-        <p class="hint" id="custHint"></p>
         <div class="grid" style="margin-top:10px">
           <label class="f full"><span>Verkäufer ist</span><select class="in" data-f="verkTyp"><option>Privat</option><option>Gewerblich</option></select></label>
           <label class="f"><span>Vorname *</span><input class="in" data-f="vorname" autocomplete="off"></label>
@@ -270,8 +271,22 @@ document.addEventListener('keydown',function(e){if(!document.getElementById('loc
     </div></div>
   </section>
 
-  <!-- Detail -->
-  <section id="vDetail" hidden></section>
+  <!-- Fertig -->
+  <section id="vDone" hidden>
+    <h1>PDF fertig</h1>
+    <div class="msg ok">Das PDF mit Vertrag und Ausweiskopie ist erstellt. Es ist nirgends gespeichert. Sende, drucke oder speichere es jetzt.</div>
+    <div style="display:grid;gap:10px;margin:14px 0">
+      <button class="btn block" id="pShare" type="button" hidden>Senden / Drucken / WhatsApp …</button>
+      <button class="btn block" id="pOpen" type="button">PDF öffnen (ansehen, drucken)</button>
+      <button class="btn ghost block" id="pSave" type="button">PDF speichern</button>
+    </div>
+    <div id="pMsg"></div>
+    <div class="card" style="margin-top:18px">
+      <button class="btn ghost block" id="btnEditAgain" type="button">Zurück zum Vertrag (etwas ändern)</button>
+      <p class="muted small" style="margin:14px 0 8px">Wenn alles erledigt ist: alle Daten, Fotos und Unterschriften löschen und neu beginnen.</p>
+      <button class="btn danger block" id="btnWipe" type="button">Alles löschen, nächster Kunde</button>
+    </div>
+  </section>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -279,8 +294,7 @@ document.addEventListener('keydown',function(e){if(!document.getElementById('loc
 (function(){
 'use strict';
 
-/* ---------- Shop-Daten und Vertragstext ---------- */
-var SHOP={name:'K-Phone An und Verkauf',owner:'Ala Rasho',street:'Viehoferstr.20',city:'45127 Essen',tel:'0201 63268951',mail:'k.phone@web.de'};
+/* ---------- Vertragstext ---------- */
 var TERMS_TEXT='Hiermit versichere ich der Verkäufer, dass alle meine obigen Angaben zu meinem zu veräußernden Gegenstand ordnungsgemäß und wahrheitsgerecht gemacht werden. Weiterhin versichere ich, dass ich weder Diebesgut, Hehlerware, Pfandsache, verpfändeten Gegenstand noch eine Ware Dritter hier zum Verkauf angeboten habe. Im Falle einer vorsätzlichen und unwahren oder grob fahrlässigen Handlung ist mir bewusst, dass ich verpflichtet bin, dem Käufer Schadensersatz zu leisten. Jegliche daraus resultierende rechtliche und finanzielle Konsequenz für den Käufer durch mein Zuwiderhandeln geht ausnahmslos zu Lasten meiner Person. Dieses bezieht sich auf den hier geschlossenen Vertrag und dessen Inhalt.';
 var TERMS_CONSENT='Ich willige ein, dass von meinem Ausweis eine Kopie angefertigt und zur Dokumentation dieses Ankaufs gespeichert wird.';
 var SIGN_LEFT='Gelesen, genehmigt und für richtig befunden';
@@ -291,47 +305,13 @@ function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAl
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function pad(n,l){n=String(n);while(n.length<l)n='0'+n;return n}
 function todayISO(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1,2)+'-'+pad(d.getDate(),2)}
-function nowTime(){var d=new Date();return pad(d.getHours(),2)+':'+pad(d.getMinutes(),2)}
 function deDate(iso){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(iso||'');return m?m[3]+'.'+m[2]+'.'+m[1]:(iso||'')}
-function isoFromDE(s){var m=/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/.exec(String(s||'').trim());return m?m[3]+'-'+pad(m[2],2)+'-'+pad(m[1],2):''}
 function parsePrice(s){var t=String(s||'').replace(/[^\d,.\-]/g,'');if(t.indexOf(',')>-1)t=t.replace(/\./g,'').replace(',','.');var n=parseFloat(t);return isFinite(n)?Math.round(n*100)/100:NaN}
 function money(n){try{return Number(n).toLocaleString('de-DE',{style:'currency',currency:'EUR'})}catch(e){return n+' €'}}
-function normId(s){return String(s||'').replace(/[\s\-]/g,'').toUpperCase()}
 function luhn(s){var sum=0,alt=false,i,n;for(i=s.length-1;i>=0;i--){n=+s[i];if(alt){n*=2;if(n>9)n-=9}sum+=n;alt=!alt}return sum%10===0}
 function slug(s){return String(s||'').replace(/[^A-Za-z0-9ÄÖÜäöüß\-]+/g,'_').replace(/^_+|_+$/g,'')}
 
-/* ---------- Speicher: Cloud (db + assets) oder nur dieses Gerät ---------- */
-var caps={db:null,assets:null,sample:null,downloads:null,canRead:false};
-var contracts=[];
-var LS='kphone-ankauf-v1';
-var localCache=null;
-function lsGet(){ if(localCache)return localCache; try{localCache=JSON.parse(localStorage.getItem(LS)||'[]')}catch(e){localCache=[]} return localCache; }
-function lsSet(a){ localCache=a; try{localStorage.setItem(LS,JSON.stringify(a))}catch(e){} }
-var store={
-  listen:function(cb){
-    if(caps.db){
-      caps.db.collection('contracts').onSnapshot(function(snap){
-        cb(snap.docs.map(function(d){var o=d.data()||{};o.id=d.id;return o}));
-      },function(e){showErr('Speicher: '+(e&&e.message||'Fehler'))});
-    } else { cb(lsGet().slice()); }
-  },
-  put:function(doc){
-    if(caps.db){ var c=JSON.parse(JSON.stringify(doc)); delete c.id; return caps.db.collection('contracts').doc(doc.id).set(c); }
-    var a=lsGet().filter(function(x){return x.id!==doc.id}); a.push(doc); lsSet(a); contracts=a.slice(); return Promise.resolve();
-  },
-  del:function(id){
-    if(caps.db){ return caps.db.collection('contracts').doc(id).delete(); }
-    var a=lsGet().filter(function(x){return x.id!==id}); lsSet(a); contracts=a.slice(); return Promise.resolve();
-  },
-  putImage:function(img){
-    if(caps.assets){ return caps.assets.upload(img.blob,{type:'image/jpeg'}).then(function(r){return r.id}); }
-    if(caps.db){ return Promise.reject(new Error('Bilder können in dieser Ansicht nicht gespeichert werden (Bild-Speicher nicht verfügbar).')); }
-    return Promise.resolve(img.dataUrl);
-  },
-  src:function(ref){ if(!ref)return ''; return /^data:/.test(ref)?ref:'/_blob/'+ref; }
-};
-
-/* ---------- Bilder aufbereiten ---------- */
+/* ---------- Bilder aufbereiten (nur im Arbeitsspeicher) ---------- */
 function fileToImage(file){
   return new Promise(function(res,rej){
     var u=URL.createObjectURL(file), im=new Image();
@@ -344,8 +324,7 @@ function shrink(file,maxSide,q){
     var c=document.createElement('canvas'); c.width=Math.round(w*s); c.height=Math.round(h*s);
     var x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(o.im,0,0,c.width,c.height);
     URL.revokeObjectURL(o.url);
-    var dataUrl=c.toDataURL('image/jpeg',q);
-    return new Promise(function(res){ c.toBlob(function(b){res({blob:b,dataUrl:dataUrl,w:c.width,h:c.height})},'image/jpeg',q); });
+    return {dataUrl:c.toDataURL('image/jpeg',q),w:c.width,h:c.height};
   });
 }
 function loadForPdf(src){
@@ -360,52 +339,21 @@ function loadForPdf(src){
 }
 
 /* ---------- Zustand ---------- */
-var view='home', step=0, f=null, imgs={front:null,back:null}, sigs={kunde:'',shop:''}, aiKeys={}, current=null, saving=false, editing=null;
+var view='home', step=0, f=null, imgs={front:null,back:null}, sigs={kunde:'',shop:''}, aiKeys={}, lastPdf=null, dirty=false, busy=false;
 
 function blankDevice(){ return {art:'Handy',modell:'',zustand:'Gebraucht',defekt:'',serial:'',imei:''}; }
 function newForm(){
   return {verkTyp:'Privat',vorname:'',nachname:'',geburtsdatum:'',staat:'',strasse:'',plz:'',ort:'',ausweisart:'Personalausweis',ausweisNr:'',
     preis:'',datum:todayISO(),devices:[blankDevice()]};
 }
-function getDevices(c){
-  if(c.devices&&c.devices.length)return c.devices;
-  return [{art:c.art||'Handy',modell:((c.hersteller?c.hersteller+' ':'')+(c.modell||'')).trim(),zustand:c.zustand||'Gebraucht',defekt:c.bemerkung||'',serial:c.serial||'',imei:c.imei||''}];
-}
+function getDevices(c){ return c.devices; }
 
-/* ---------- Anzeige ---------- */
 function show(v){
   view=v;
-  $('#vHome').hidden=v!=='home'; $('#vForm').hidden=v!=='form'; $('#vDetail').hidden=v!=='detail';
-  var hf=$('#homeFoot'); if(hf)hf.hidden=(v!=='home');
+  $('#vHome').hidden=v!=='home'; $('#vForm').hidden=v!=='form'; $('#vDone').hidden=v!=='done';
   window.scrollTo(0,0);
 }
 function showErr(t){ var e=$('#formErr'); if(e)e.innerHTML=t?'<div class="msg err" role="alert">'+esc(t)+'</div>':''; }
-
-function indexOf(c){
-  var dv=getDevices(c);
-  return [c.vorname,c.nachname,c.vorname+' '+c.nachname,c.nachname+' '+c.vorname,c.ausweisNr,deDate(c.geburtsdatum),c.geburtsdatum,deDate(c.datum),c.datum,
-    dv.map(function(x){return [x.modell,x.imei,x.serial,x.art,x.defekt].join(' ')}).join(' ')].join(' ').toLowerCase();
-}
-function renderList(){
-  var q=$('#q').value.trim().toLowerCase(), toks=q?q.split(/\s+/):[];
-  var arr=contracts.slice().sort(function(a,b){return String(b.createdAt||'').localeCompare(String(a.createdAt||''))});
-  var res=arr.filter(function(c){var ix=indexOf(c);return toks.every(function(t){return ix.indexOf(t)>-1})});
-  $('#count').textContent=contracts.length+(contracts.length===1?' Vertrag':' Verträge')+(q?' · '+res.length+' Treffer':'');
-  var ul=$('#list');
-  if(!res.length){
-    ul.innerHTML='<li class="empty">'+(contracts.length?'Nichts gefunden. Probiere Name, Kundennummer, IMEI oder Datum.':'Noch kein Kaufvertrag gespeichert. Tippe unten auf „Neuer Kaufvertrag“.')+'</li>';
-  } else {
-    ul.innerHTML=res.map(function(c){
-      var dv=getDevices(c);
-      return '<li><button class="item" type="button" data-open="'+esc(c.id)+'"><span class="n">'+esc(c.nachname)+', '+esc(c.vorname)+'</span><span class="p">'+esc(money(c.preis))+'</span>'+
-        '<span class="s">'+esc(dv.map(function(x){return x.modell}).join(', '))+'</span>'+
-        '<span class="s">IMEI '+esc(dv.map(function(x){return x.imei}).join(', '))+'</span>'+
-        '<span class="s">Gekauft am '+esc(deDate(c.datum))+(c.geburtsdatum?' · geb. '+esc(deDate(c.geburtsdatum)):'')+'</span></button></li>';
-    }).join('');
-  }
-  var ft=$('#homeFoot'); if(!ft){ ft=document.createElement('div'); ft.className='foot'; ft.id='homeFoot'; ft.innerHTML='<div class="in-foot"><button class="btn" id="btnNew" type="button">Neuer Kaufvertrag</button></div>'; document.body.appendChild(ft); $('#btnNew').onclick=startNew; }
-  ft.hidden=(view!=='home');
-}
 
 /* ---------- Formular ---------- */
 var STEP_NAMES=['1 Ausweis','2 Kunde','3 Geräte','4 Unterschrift'];
@@ -415,9 +363,8 @@ function renderSteps(){
   }).join('');
   $$('.step').forEach(function(s){s.hidden=(+s.getAttribute('data-step')!==step)});
   $('#btnBack').textContent=step===0?'Abbrechen':'Zurück';
-  $('#btnNext').textContent=step===3?(editing?'Änderungen speichern':'Vertrag speichern'):'Weiter';
+  $('#btnNext').textContent=step===3?'PDF erstellen':'Weiter';
   if(step===3){ sigResize(); }
-  if(step===1){ custHint(); }
 }
 function renderDevices(){
   var h='';
@@ -452,50 +399,30 @@ function imeiHint(i){
   if(!luhn(v)){el.textContent='Prüfziffer stimmt nicht. Bitte noch einmal vergleichen.';el.className='hint warn';return}
   el.textContent='IMEI sieht korrekt aus.';el.className='hint';
 }
-function findCustomer(){
-  var id=normId(f.ausweisNr), nn=(f.nachname||'').trim().toLowerCase(), vn=(f.vorname||'').trim().toLowerCase();
-  return contracts.filter(function(c){
-    if(editing&&c.id===editing.id)return false;
-    return (id&&normId(c.ausweisNr)===id)||(nn&&vn&&f.geburtsdatum&&c.nachname.toLowerCase()===nn&&c.vorname.toLowerCase()===vn&&c.geburtsdatum===f.geburtsdatum);
-  });
-}
-function custHint(){
-  var m=findCustomer(), h=$('#custHint');
-  h.textContent=m.length?('Bekannter Kunde · bisher '+m.length+(m.length===1?' Vertrag':' Verträge')):'';
-}
-function resetCommon(){
-  aiKeys={}; step=0; $('#ocrMsg').innerHTML=''; $('#ocrNote').innerHTML=''; showErr('');
-  resetSlot('front'); resetSlot('back');
-}
-function startNew(){
-  f=newForm(); imgs={front:null,back:null}; sigs={kunde:'',shop:''}; current=null; editing=null;
-  $('#formTitle').textContent='Neuer Kaufvertrag'; $('#demoRow').hidden=false;
-  resetCommon(); updateOcrBtn(); bindFields(); show('form'); renderSteps();
-}
-function startEdit(c){
-  editing=c; current=c; resetCommon();
-  f={verkTyp:c.verkTyp||'Privat',vorname:c.vorname,nachname:c.nachname,geburtsdatum:c.geburtsdatum||'',staat:c.staat||'',strasse:c.strasse,plz:c.plz,ort:c.ort,
-     ausweisart:c.ausweisart||'Personalausweis',ausweisNr:c.ausweisNr,preis:String(c.preis).replace('.',','),datum:c.datum,
-     devices:getDevices(c).map(function(d){return {art:d.art,modell:d.modell,zustand:d.zustand,defekt:d.defekt||'',serial:d.serial||'',imei:d.imei||''}})};
-  imgs={front:{ref:c.idFront,dataUrl:store.src(c.idFront)},back:{ref:c.idBack,dataUrl:store.src(c.idBack)}};
-  setSlot('front',imgs.front); setSlot('back',imgs.back);
-  sigs={kunde:c.sigKunde||'',shop:c.sigShop||''};
-  $('#formTitle').textContent='Vertrag bearbeiten'; $('#demoRow').hidden=true;
-  updateOcrBtn(); bindFields(); show('form'); renderSteps();
-}
 function resetSlot(k){
   var s=$(k==='front'?'#slotFront':'#slotBack'); s.classList.remove('has'); var im=$('img',s); if(im)im.remove(); var t=$('.tag',s); if(t)t.remove();
 }
 function setSlot(k,img){
   resetSlot(k); var s=$(k==='front'?'#slotFront':'#slotBack'); s.classList.add('has');
   var im=document.createElement('img'); im.src=img.dataUrl; im.alt=k==='front'?'Ausweis Vorderseite':'Ausweis Rückseite'; s.insertBefore(im,s.firstChild);
-  var t=document.createElement('span'); t.className='tag'; t.textContent=(k==='front'?'Vorderseite':'Rückseite')+(editing?' · antippen zum Ersetzen':''); s.appendChild(t);
+  var t=document.createElement('span'); t.className='tag'; t.textContent=(k==='front'?'Vorderseite':'Rückseite')+' · antippen zum Ersetzen'; s.appendChild(t);
 }
 function updateOcrBtn(){
-  var ready=!!(imgs.front&&imgs.back), b=$('#btnOcr'), h=$('#ocrHint');
-  if(!caps.sample||!caps.canRead){ b.hidden=true; h.textContent='Automatisches Auslesen ist in dieser Ansicht nicht verfügbar. Die Daten tippst du im nächsten Schritt ein.'; return; }
-  b.hidden=false; b.disabled=!ready;
-  h.textContent=ready?'Die App erkennt Ausweisart und Land und trägt alles ein. Das Foto geht dafür an Claude.':'Erst beide Seiten fotografieren.';
+  var ready=!!(imgs.front&&imgs.back); $('#btnOcr').disabled=!ready||busy;
+}
+function startNew(){
+  f=newForm(); imgs={front:null,back:null}; sigs={kunde:'',shop:''}; lastPdf=null; aiKeys={}; step=0; dirty=false;
+  $('#ocrMsg').innerHTML=''; $('#ocrNote').innerHTML=''; showErr('');
+  resetSlot('front'); resetSlot('back'); $('#demoRow').hidden=false;
+  updateOcrBtn(); bindFields(); show('form'); renderSteps();
+}
+function wipe(){
+  f=null; imgs={front:null,back:null}; sigs={kunde:'',shop:''}; lastPdf=null; aiKeys={}; dirty=false;
+  try{ pads.kunde.clear(); pads.shop.clear(); }catch(e){}
+  resetSlot('front'); resetSlot('back'); $('#ocrMsg').innerHTML=''; $('#ocrNote').innerHTML=''; $('#pMsg').innerHTML='';
+  $$('[data-f]').forEach(function(el){ if(el.tagName==='SELECT')el.selectedIndex=0; else el.value=''; });
+  $('#devList').innerHTML='';
+  show('home');
 }
 function validate(s){
   var miss=[];
@@ -516,14 +443,14 @@ function validate(s){
   return miss;
 }
 function next(){
-  showErr('');
+  if(busy)return; showErr('');
   var miss=validate(step);
   if(miss.length){ showErr('Bitte noch ausfüllen: '+miss.join(', ')); return; }
-  if(step<3){ step++; renderSteps(); window.scrollTo(0,0); } else { save(); }
+  if(step<3){ step++; renderSteps(); window.scrollTo(0,0); } else { makeDoc(); }
 }
 function back(){
-  showErr('');
-  if(step===0){ if(editing){openDetail(editing.id);}else{show('home'); renderList();} return; }
+  if(busy)return; showErr('');
+  if(step===0){ if(!dirty||confirm('Alle eingegebenen Daten verwerfen?')){ wipe(); } return; }
   step--; renderSteps(); window.scrollTo(0,0);
 }
 
@@ -535,109 +462,54 @@ function Pad(canvas,key){
     var r=canvas.getBoundingClientRect(); if(!r.width)return;
     var d=window.devicePixelRatio||1; canvas.width=Math.round(r.width*d); canvas.height=Math.round(r.height*d);
     ctx=canvas.getContext('2d'); ctx.setTransform(d,0,0,d,0,0); ctx.lineWidth=2.6; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#111';
-    if(sigs[key]){ var im=new Image(); im.onload=function(){ctx.drawImage(im,0,0,r.width,r.height)}; im.src=sigs[key]; ink=true; }
+    if(sigs[key]){ var im=new Image(); im.onload=function(){ctx.drawImage(im,0,0,r.width,r.height)}; im.src=sigs[key]; ink=true; } else { ink=false; }
   }
   function pt(e){var r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top}}
   canvas.addEventListener('pointerdown',function(e){ if(!ctx)size(); drawing=true; last=pt(e); canvas.setPointerCapture(e.pointerId); ctx.beginPath(); ctx.arc(last.x,last.y,1.2,0,6.3); ctx.fillStyle='#111'; ctx.fill(); e.preventDefault(); });
   canvas.addEventListener('pointermove',function(e){ if(!drawing)return; var p=pt(e); ctx.beginPath(); ctx.moveTo(last.x,last.y); ctx.lineTo(p.x,p.y); ctx.stroke(); last=p; ink=true; e.preventDefault(); });
-  function end(){ if(!drawing)return; drawing=false; if(ink)sigs[key]=exp(); }
+  function end(){ if(!drawing)return; drawing=false; if(ink){ sigs[key]=exp(); dirty=true; } }
   canvas.addEventListener('pointerup',end); canvas.addEventListener('pointercancel',end);
   function exp(){
     var r=canvas.getBoundingClientRect(), w=640, h=Math.round(w*r.height/r.width);
     var t=document.createElement('canvas'); t.width=w; t.height=h; var x=t.getContext('2d'); x.drawImage(canvas,0,0,w,h); return t.toDataURL('image/png');
   }
-  this.clear=function(){ if(!ctx)size(); var r=canvas.getBoundingClientRect(); ctx.clearRect(0,0,r.width,r.height); ink=false; sigs[key]=''; };
+  this.clear=function(){ if(!ctx)size(); if(ctx){ var r=canvas.getBoundingClientRect(); ctx.clearRect(0,0,r.width,r.height); } ink=false; sigs[key]=''; };
   this.size=size;
 }
 function sigResize(){ setTimeout(function(){ pads.kunde.size(); pads.shop.size(); },0); }
 
-/* ---------- Speichern ---------- */
-function nextNumber(prefix,field){
-  var max=0; contracts.forEach(function(c){ var m=new RegExp('^'+prefix+'-(\\d+)$').exec(c[field]||''); if(m)max=Math.max(max,+m[1]); });
-  return prefix+'-'+pad(max+1,4);
-}
-function ensureRef(img){ if(!img.blob&&img.ref)return Promise.resolve(img.ref); return store.putImage(img); }
-function save(){
-  if(saving)return; saving=true; var b=$('#btnNext'); b.disabled=true; b.textContent='Speichere …'; showErr('');
-  var known=editing?[]:findCustomer();
-  Promise.all([ensureRef(imgs.front),ensureRef(imgs.back)]).then(function(refs){
-    var nr=editing?editing.nr:nextNumber('V','nr');
-    var doc={
-      id:editing?editing.id:nr, nr:nr,
-      kundenNr:editing?editing.kundenNr:(known.length?known[0].kundenNr:nextNumber('K','kundenNr')),
-      createdAt:editing?editing.createdAt:new Date().toISOString(),
-      datum:f.datum||todayISO(),
-      verkTyp:f.verkTyp,vorname:f.vorname.trim(),nachname:f.nachname.trim(),geburtsdatum:f.geburtsdatum,staat:f.staat.trim(),
-      strasse:f.strasse.trim(),plz:f.plz.trim(),ort:f.ort.trim(),ausweisart:f.ausweisart,ausweisNr:f.ausweisNr.trim(),
-      devices:f.devices.map(function(d){return {art:d.art.trim(),modell:d.modell.trim(),zustand:d.zustand,defekt:d.defekt.trim(),serial:d.serial.trim(),imei:String(d.imei).replace(/\D/g,'')}}),
-      preis:parsePrice(f.preis),
-      idFront:refs[0],idBack:refs[1],sigKunde:sigs.kunde,sigShop:sigs.shop
-    };
-    if(editing)doc.updatedAt=new Date().toISOString();
-    return store.put(doc).then(function(){
-      saving=false; b.disabled=false;
-      contracts=contracts.filter(function(x){return x.id!==doc.id}); contracts.push(doc);
-      var wasEdit=!!editing; editing=null; openDetail(doc.id,wasEdit?'edit':'new');
-    });
-  }).catch(function(e){
-    saving=false; b.disabled=false; b.textContent=editing?'Änderungen speichern':'Vertrag speichern';
-    showErr('Speichern fehlgeschlagen: '+((e&&e.message)||'unbekannter Fehler')+'. Der Vertrag ist noch nicht gespeichert.');
-  });
-}
-
-/* ---------- Detail ---------- */
-function kv(rows){ return '<dl class="kv">'+rows.filter(function(r){return r[1]!==''&&r[1]!=null}).map(function(r){return '<dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd>'}).join('')+'</dl>'; }
-function openDetail(id,mode){
-  var c=contracts.filter(function(x){return x.id===id})[0]; if(!c){show('home');renderList();return}
-  current=c; editing=null;
-  var dv=getDevices(c);
-  var arts=dv.map(function(d,i){
-    return '<h3 class="subh">'+(dv.length>1?'Artikel '+(i+1):'Artikel')+'</h3>'+kv([['Art des Artikels',d.art],['Model',d.modell],['Zustand',d.zustand+(d.defekt?' · '+d.defekt:'')],['IMEI',d.imei],['Geräte-/Serien-Nr.',d.serial]]);
-  }).join('');
-  $('#vDetail').innerHTML=
-    '<div class="bar" style="margin-top:16px"><button class="btn ghost sm" id="dBack" type="button">← Alle Verträge</button></div>'+
-    (mode==='new'?'<div class="msg ok">Vertrag gespeichert.</div>':'')+(mode==='edit'?'<div class="msg ok">Änderungen gespeichert.</div>':'')+
-    '<h1 style="margin-top:6px">'+esc(c.nachname)+', '+esc(c.vorname)+'</h1>'+
-    '<div id="dMsg"></div>'+
-    '<div style="display:grid;gap:10px;margin-bottom:14px"><button class="btn block" id="dPdf" type="button">PDF mit Ausweis und Unterschriften erstellen</button><button class="btn ghost block" id="dEdit" type="button">Vertrag bearbeiten</button></div>'+
-    '<div class="card"><h2>Kaufbetrag</h2>'+kv([['Kaufbetrag',money(c.preis)],['Datum',deDate(c.datum)]])+arts+'</div>'+
-    '<div class="card"><h2>Verkäufer</h2>'+kv([['Verkäufer',c.verkTyp||'Privat'],['Name',c.vorname+' '+c.nachname],['Geburtsdatum',deDate(c.geburtsdatum)],['Anschrift',c.strasse+', '+c.plz+' '+c.ort],['Land',c.staat],[c.ausweisart||'Ausweis',c.ausweisNr]])+'</div>'+
-    '<div class="card"><h2>Ausweiskopie</h2><div class="imgs" style="margin-top:8px"><button type="button" data-zoom="'+esc(store.src(c.idFront))+'"><img alt="Vorderseite" src="'+esc(store.src(c.idFront))+'"></button><button type="button" data-zoom="'+esc(store.src(c.idBack))+'"><img alt="Rückseite" src="'+esc(store.src(c.idBack))+'"></button></div></div>'+
-    '<div class="card"><h2>Unterschriften</h2><div class="sigs" style="margin-top:8px"><figure><img alt="Unterschrift Verkäufer" src="'+esc(c.sigKunde)+'"><figcaption>Verkäufer</figcaption></figure><figure><img alt="Unterschrift Käufer" src="'+esc(c.sigShop)+'"><figcaption>Käufer</figcaption></figure></div></div>'+
-    '<div class="card"><button class="btn danger sm" id="dDel" type="button">Vertrag löschen</button><div id="dDelBox"></div></div>';
-  show('detail');
+/* ---------- PDF ---------- */
+function buildDoc(){
+  return {
+    datum:f.datum||todayISO(), verkTyp:f.verkTyp, vorname:f.vorname.trim(), nachname:f.nachname.trim(), geburtsdatum:f.geburtsdatum, staat:f.staat.trim(),
+    strasse:f.strasse.trim(), plz:f.plz.trim(), ort:f.ort.trim(), ausweisart:f.ausweisart, ausweisNr:f.ausweisNr.trim(),
+    devices:f.devices.map(function(d){return {art:d.art.trim(),modell:d.modell.trim(),zustand:d.zustand,defekt:d.defekt.trim(),serial:d.serial.trim(),imei:String(d.imei).replace(/\D/g,'')}}),
+    preis:parsePrice(f.preis), idFront:imgs.front.dataUrl, idBack:imgs.back.dataUrl, sigKunde:sigs.kunde, sigShop:sigs.shop
+  };
 }
 function pdfName(c){ return 'Kaufvertrag_'+slug(c.nachname)+'_'+slug(c.vorname)+'_'+c.datum+'.pdf'; }
-function saveBlob(blob,name){
-  if(caps.downloads){ return caps.downloads.save({filename:name,data:blob}).then(function(r){return r.status}); }
-  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); a.remove(); return Promise.resolve('saved');
+function makeDoc(){
+  busy=true; var b=$('#btnNext'); b.disabled=true; b.textContent='PDF wird erstellt …';
+  var c=buildDoc();
+  makePdf(c).then(function(blob){
+    lastPdf={blob:blob,name:pdfName(c)};
+    $('#pShare').hidden=!canShareFile(); $('#pMsg').innerHTML='';
+    show('done');
+  }).catch(function(e){
+    showErr('PDF konnte nicht erstellt werden: '+((e&&e.message)||'Fehler'));
+  }).then(function(){ busy=false; b.disabled=false; b.textContent='PDF erstellen'; });
 }
-var lastPdf=null;
 function pdfFile(){ return new File([lastPdf.blob],lastPdf.name,{type:'application/pdf'}); }
 function canShareFile(){ try{ return !!(navigator.share&&navigator.canShare&&lastPdf&&navigator.canShare({files:[pdfFile()]})); }catch(e){ return false; } }
-function doPdf(){
-  var b=$('#dPdf'), m=$('#dMsg'); b.disabled=true; b.textContent='PDF wird erstellt …'; m.innerHTML='';
-  makePdf(current).then(function(blob){
-    lastPdf={blob:blob,name:pdfName(current)};
-    m.innerHTML='<div class="msg ok">PDF fertig. Wähle, was du damit machen willst:</div><div style="display:grid;gap:10px;margin-bottom:14px">'+
-      (canShareFile()?'<button class="btn block" id="pShare" type="button">Senden / Drucken / WhatsApp …</button>':'')+
-      '<button class="btn '+(canShareFile()?'ghost ':'')+'block" id="pOpen" type="button">PDF öffnen (ansehen, drucken)</button>'+
-      '<button class="btn ghost block" id="pSave" type="button">PDF speichern</button></div><div id="pMsg"></div>';
-  }).catch(function(e){
-    m.innerHTML='<div class="msg err" role="alert">'+esc('PDF konnte nicht erstellt werden: '+((e&&e.message)||'Fehler'))+'</div>';
-  }).then(function(){ b.disabled=false; b.textContent='PDF mit Ausweis und Unterschriften erstellen'; });
-}
 function pdfAction(id){
-  if(!lastPdf)return; var pm=$('#pMsg');
+  if(!lastPdf)return; var pm=$('#pMsg'); pm.innerHTML='';
   if(id==='pShare'){ navigator.share({files:[pdfFile()],title:lastPdf.name}).catch(function(e){ if(e&&e.name!=='AbortError')pm.innerHTML='<div class="msg err">Teilen nicht möglich. Nimm „PDF speichern“.</div>'; }); }
   if(id==='pOpen'){ var u=URL.createObjectURL(lastPdf.blob), w=window.open(u,'_blank'); if(!w){ location.href=u; } }
-  if(id==='pSave'){ saveBlob(lastPdf.blob,lastPdf.name).then(function(){ pm.innerHTML='<div class="msg ok">Gespeichert. Du findest die Datei im Ordner „Downloads“ bzw. unter „Dateien“.</div>'; }).catch(function(){}); }
+  if(id==='pSave'){ var a=document.createElement('a'); a.href=URL.createObjectURL(lastPdf.blob); a.download=lastPdf.name; document.body.appendChild(a); a.click(); a.remove(); pm.innerHTML='<div class="msg ok">Gespeichert. Du findest die Datei im Ordner „Downloads“ bzw. unter „Dateien“.</div>'; }
 }
-
-/* ---------- PDF (Aufbau wie der Papier-Vertrag) ---------- */
 function makePdf(c){
   if(!window.jspdf)return Promise.reject(new Error('PDF-Bibliothek nicht geladen. Bitte Internetverbindung prüfen.'));
-  return Promise.all([loadForPdf(store.src(c.idFront)),loadForPdf(store.src(c.idBack))]).then(function(ims){
+  return Promise.all([loadForPdf(c.idFront),loadForPdf(c.idBack)]).then(function(ims){
     var devs=getDevices(c), n=devs.length;
     var rh=n===1?10.5:(n===2?9.6:8.4), dr=n===1?10.5:(n===2?9.2:8.2), pf=n===3?8:(n===2?9:10), lh=pf*0.44;
     var jsPDF=window.jspdf.jsPDF, d=new jsPDF({unit:'mm',format:'a4'}), W=210, M=18, R=W-M, y;
@@ -654,7 +526,7 @@ function makePdf(c){
     d.setFontSize(11); T('Handys - Internet - Telefonkarten',W/2,31,{align:'center'});
     var l1='Ala Rasho   Viehoferstr.20 45127 Essen'; T(l1,W/2,37.5,{align:'center'}); var lw1=d.getTextWidth(l1); d.setLineWidth(.35); d.setDrawColor(20); d.line(W/2-lw1/2,38.8,W/2+lw1/2,38.8);
     d.setFontSize(12); var tt='Kaufvertrag für bewegliche Artikel Neu und Gebrauchtwaren'; T(tt,M,50); var tw=d.getTextWidth(tt); d.setLineWidth(.45); d.line(M,51.4,M+tw,51.4);
-        d.setFont('helvetica','bold'); d.setFontSize(10.5); ink(10); T('Käufer:',M,62);
+    d.setFont('helvetica','bold'); d.setFontSize(10.5); ink(10); T('Käufer:',M,62);
     d.setFontSize(11); T('K-Phone',M+30,60.5); T('An und Verkauf',M+30,65.5);
     d.setFont('helvetica','normal'); d.setFontSize(10.5); T('Inhaber: Ala Rasho',M+30,70.5); T('Viehoferstr.20  45127 Essen',M+30,75.5);
     y=n===3?85:89; var half=(R-M-6)/2;
@@ -705,35 +577,120 @@ function makePdf(c){
   });
 }
 
-/* ---------- Ausweis auslesen (Claude) ---------- */
-function ensureBlob(img){ if(img.blob)return Promise.resolve(img.blob); return fetch(img.dataUrl).then(function(r){return r.blob()}); }
+/* ---------- Ausweis lesen: maschinenlesbare Zeilen (MRZ), nur auf dem Gerät ---------- */
+var COUNTRY={D:'Deutschland',DEU:'Deutschland',TUR:'Türkei',SYR:'Syrien',POL:'Polen',ROU:'Rumänien',BGR:'Bulgarien',ITA:'Italien',FRA:'Frankreich',ESP:'Spanien',GRC:'Griechenland',NLD:'Niederlande',BEL:'Belgien',AUT:'Österreich',CHE:'Schweiz',UKR:'Ukraine',RUS:'Russland',IRQ:'Irak',IRN:'Iran',AFG:'Afghanistan',LBN:'Libanon',MAR:'Marokko',DZA:'Algerien',TUN:'Tunesien',EGY:'Ägypten',SRB:'Serbien',BIH:'Bosnien und Herzegowina',HRV:'Kroatien',ALB:'Albanien',XKX:'Kosovo',RKS:'Kosovo',MKD:'Nordmazedonien',MNE:'Montenegro',PRT:'Portugal',GBR:'Vereinigtes Königreich',USA:'USA',CZE:'Tschechien',SVK:'Slowakei',HUN:'Ungarn',LTU:'Litauen',LVA:'Lettland',EST:'Estland',DNK:'Dänemark',SWE:'Schweden',NOR:'Norwegen',FIN:'Finnland',IRL:'Irland',LUX:'Luxemburg',SVN:'Slowenien',MDA:'Moldau',GEO:'Georgien',ARM:'Armenien',AZE:'Aserbaidschan',PAK:'Pakistan',IND:'Indien',ERI:'Eritrea',SOM:'Somalia',ETH:'Äthiopien',NGA:'Nigeria',GHA:'Ghana',LBY:'Libyen',JOR:'Jordanien',PSE:'Palästina',YEM:'Jemen',CHN:'China',VNM:'Vietnam',THA:'Thailand',BRA:'Brasilien'};
+var W3=[7,3,1];
+function chkDigit(s){
+  var t=0,i,c,n; for(i=0;i<s.length;i++){ c=s.charAt(i); n=c==='<'?0:(c>='0'&&c<='9'?+c:c.charCodeAt(0)-55); t+=n*W3[i%3]; } return t%10;
+}
+var TO_NUM={O:'0',Q:'0',D:'0',I:'1',L:'1',Z:'2',S:'5',B:'8',G:'6'}, TO_ALPHA={'0':'O','1':'I','2':'Z','5':'S','8':'B','6':'G'};
+function fixNum(s){ return s.replace(/[A-Z<]/g,function(c){return TO_NUM[c]||c}); }
+function fixAlpha(s){ return s.replace(/[0-9]/g,function(c){return TO_ALPHA[c]||c}); }
+function cleanLine(l){ return String(l).toUpperCase().replace(/[«‹]/g,'<').replace(/\s+/g,'').replace(/[^A-Z0-9<]/g,''); }
+function fixFill(s){ return s.replace(/[KCLXE]{3,}$/,function(m){return new Array(m.length+1).join('<')}); }
+function fit(s,n){ s=s.slice(0,n); while(s.length<n)s+='<'; return s; }
+function mrzDate(six,birth){
+  if(!/^\d{6}$/.test(six))return '';
+  var yy=+six.slice(0,2), mm=six.slice(2,4), dd=six.slice(4,6), now=new Date().getFullYear()%100, y;
+  if(+mm<1||+mm>12||+dd<1||+dd>31)return '';
+  y=birth?(yy>now?1900+yy:2000+yy):2000+yy;
+  return y+'-'+mm+'-'+dd;
+}
+function title(s){ return s.split(' ').filter(Boolean).map(function(w){ return w.charAt(0)+w.slice(1).toLowerCase(); }).join(' '); }
+function nameParts(raw){
+  var t=fixAlpha(fixFill(raw)); var i=t.indexOf('<<'); var sur=i>-1?t.slice(0,i):t, giv=i>-1?t.slice(i+2):'';
+  var gp=giv.split('<').filter(Boolean); while(gp.length>1&&/^[KCLXES]$/.test(gp[gp.length-1]))gp.pop();
+  return {nachname:title(sur.replace(/</g,' ').trim()),vorname:title(gp.join(' ').trim())};
+}
+function parseTD1(a,b,c){
+  var l1=fit(a,30), l2=fit(b,30), l3=fit(c,30);
+  var type=l1.slice(0,2), country=fixAlpha(l1.slice(2,5)).replace(/</g,''), docNo=l1.slice(5,14), cd=l1.charAt(14);
+  var dob=fixNum(l2.slice(0,6)), cdob=fixNum(l2.charAt(6)), exp=fixNum(l2.slice(8,14)), cexp=fixNum(l2.charAt(14));
+  var ok={doc:String(chkDigit(docNo))===cd, dob:String(chkDigit(dob))===cdob, exp:String(chkDigit(exp))===cexp};
+  if(!((ok.doc&&ok.dob)||(ok.doc&&ok.exp)||(ok.dob&&ok.exp)))return null;
+  var nm=nameParts(l3);
+  return {format:'TD1',type:type,country:country,docNo:docNo.replace(/</g,''),dob:ok.dob?mrzDate(dob,true):'',okDoc:ok.doc,nachname:nm.nachname,vorname:nm.vorname};
+}
+function parseTD3(a,b){
+  var l1=fit(a,44), l2=fit(b,44);
+  var type=l1.slice(0,2), country=fixAlpha(l1.slice(2,5)).replace(/</g,'');
+  var docNo=l2.slice(0,9), cd=l2.charAt(9), dob=fixNum(l2.slice(13,19)), cdob=fixNum(l2.charAt(19)), exp=fixNum(l2.slice(21,27)), cexp=fixNum(l2.charAt(27));
+  var ok={doc:String(chkDigit(docNo))===cd, dob:String(chkDigit(dob))===cdob, exp:String(chkDigit(exp))===cexp};
+  if(!((ok.doc&&ok.dob)||(ok.doc&&ok.exp)||(ok.dob&&ok.exp)))return null;
+  var nm=nameParts(l1.slice(5));
+  return {format:'TD3',type:type,country:country,docNo:docNo.replace(/</g,''),dob:ok.dob?mrzDate(dob,true):'',okDoc:ok.doc,nachname:nm.nachname,vorname:nm.vorname};
+}
+function tryParse(text){
+  var lines=String(text).split(/\r?\n/).map(cleanLine).filter(function(l){return l.length>=24}), i, r;
+  for(i=0;i<lines.length-1;i++){ if(lines[i].length>=38&&lines[i+1].length>=38){ r=parseTD3(lines[i],lines[i+1]); if(r)return r; } }
+  for(i=0;i<lines.length-2;i++){ if(lines[i].length<=36&&lines[i+1].length<=36&&lines[i+2].length<=36){ r=parseTD1(lines[i],lines[i+1],lines[i+2]); if(r)return r; } }
+  return null;
+}
+if(window.__TEST)window.__TEST.tryParse=tryParse;
+
+var tessWorker=null, tessLoading=null;
+function loadScript(src){
+  return new Promise(function(res,rej){ var s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=function(){rej(new Error('load'))}; document.head.appendChild(s); });
+}
+function getWorker(setStatus){
+  if(tessWorker)return Promise.resolve(tessWorker);
+  if(tessLoading)return tessLoading;
+  var cfg=window.TESS_CFG||{};
+  tessLoading=(window.Tesseract?Promise.resolve():loadScript(cfg.script||'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js')).then(function(){
+    var opts=cfg.opts||{langPath:'https://cdn.jsdelivr.net/npm/@tesseract.js-data/eng@1.0.0/4.0.0_best_int'};
+    opts.logger=function(m){ if(m&&m.status==='recognizing text'){ setStatus('Lese … '+Math.round((m.progress||0)*100)+' %'); } else if(m&&/loading/.test(m.status||'')){ setStatus('Lesemodul wird geladen …'); } };
+    return window.Tesseract.createWorker('eng',1,opts);
+  }).then(function(w){
+    return w.setParameters({tessedit_char_whitelist:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<',tessedit_pageseg_mode:'6',preserve_interword_spaces:'0'}).then(function(){ tessWorker=w; return w; });
+  }).catch(function(e){ tessLoading=null; throw e; });
+  return tessLoading;
+}
+function prepCanvas(dataUrl,fromFrac){
+  return new Promise(function(res,rej){
+    var im=new Image(); im.onload=function(){
+      var sy=Math.round(im.naturalHeight*fromFrac), sh=im.naturalHeight-sy, sc=Math.min(2.5,2200/im.naturalWidth);
+      var c=document.createElement('canvas'); c.width=Math.round(im.naturalWidth*sc); c.height=Math.round(sh*sc);
+      var x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(im,0,sy,im.naturalWidth,sh,0,0,c.width,c.height);
+      var d=x.getImageData(0,0,c.width,c.height), p=d.data, i, g, lo=255, hi=0;
+      for(i=0;i<p.length;i+=4){ g=(p[i]*0.3+p[i+1]*0.59+p[i+2]*0.11); p[i]=g; if(g<lo)lo=g; if(g>hi)hi=g; }
+      var span=Math.max(40,hi-lo);
+      for(i=0;i<p.length;i+=4){ g=Math.max(0,Math.min(255,(p[i]-lo)*255/span)); p[i]=p[i+1]=p[i+2]=g; }
+      x.putImageData(d,0,0); res(c);
+    }; im.onerror=function(){rej(new Error('Bild'))}; im.src=dataUrl;
+  });
+}
+function applyMrz(r){
+  var map={nachname:r.nachname,vorname:r.vorname,ausweisNr:r.okDoc?r.docNo:'',geburtsdatum:r.dob,staat:COUNTRY[r.country]||r.country};
+  map.ausweisart=(r.type.charAt(0)==='P')?'Reisepass':'Personalausweis';
+  var n=0, keys=[]; Object.keys(map).forEach(function(k){ if(map[k]){ f[k]=String(map[k]); aiKeys[k]=true; n++; keys.push(k); } });
+  bindFields(); return n;
+}
 function ocr(){
-  var b=$('#btnOcr'), m=$('#ocrMsg'); b.disabled=true; b.textContent='Lese Ausweis …'; m.innerHTML='';
-  var prompt='Du liest ein Ausweisdokument beliebiger Herkunft. Bild 1 ist die Vorderseite bzw. Datenseite, Bild 2 die Rückseite bzw. eine weitere Seite. '+
-   'Erkenne zuerst die Art des Dokuments und das Land, das es ausgestellt hat. '+
-   'Antworte NUR mit einem JSON-Objekt dieser Form: {"ausweisart":"Personalausweis|Reisepass|Aufenthaltstitel|Sonstiges","land":"","vorname":"","nachname":"","geburtsdatum":"TT.MM.JJJJ","strasse":"","plz":"","ort":"","ausweisnummer":""}. '+
-   'Regeln: ausweisart "Personalausweis" gilt für jede nationale Ausweiskarte (auch aus dem Ausland), "Reisepass" für Pässe, "Aufenthaltstitel" für Aufenthaltskarten und Titel. '+
-   'land ist das ausstellende Land als deutscher Landesname, zum Beispiel Deutschland, Syrien, Türkei, Polen. '+
-   'Schreibe Namen so, wie sie in lateinischer Schrift auf dem Dokument stehen (bei Pässen hilft die maschinenlesbare Zeile unten als Kontrolle). Mehrere Vornamen vollständig, Nachname ohne Geburtsname. Datumsangaben immer als TT.MM.JJJJ. '+
-   'Nichts raten und nichts ergänzen: Ist ein Feld nicht eindeutig lesbar oder steht nicht auf dem Dokument (zum Beispiel Anschrift bei Reisepässen), lass es leer. Beim deutschen Personalausweis steht die Anschrift auf der Rückseite, die Dokumentennummer (neun Zeichen) auf der Vorderseite. Straße mit Hausnummer.';
-  Promise.all([ensureBlob(imgs.front),ensureBlob(imgs.back)]).then(function(bl){
-    return caps.sample.json(prompt,{images:bl,cache:false});
-  }).then(function(r){
-    var map={vorname:r.vorname,nachname:r.nachname,strasse:r.strasse,plz:r.plz,ort:r.ort,ausweisNr:r.ausweisnummer,staat:r.land,geburtsdatum:isoFromDE(r.geburtsdatum)};
-    if(/^(Personalausweis|Reisepass|Aufenthaltstitel|Sonstiges)$/.test(r.ausweisart||''))map.ausweisart=r.ausweisart;
-    var n=0; Object.keys(map).forEach(function(k){ if(map[k]){ f[k]=String(map[k]); aiKeys[k]=true; n++; } });
-    bindFields();
-    if(n){
-      var kind=(map.ausweisart||'Ausweis')+(r.land?' · '+r.land:'');
-      $('#ocrNote').innerHTML='<div class="msg ok">Erkannt: '+esc(kind)+'. '+n+' Felder aus dem Ausweis eingetragen (grün). Bitte kurz mit dem Ausweis vergleichen und Fehlendes ergänzen.</div>';
+  if(busy)return; busy=true; var b=$('#btnOcr'), m=$('#ocrMsg'); b.disabled=true; m.innerHTML='';
+  function status(t){ b.textContent=t; }
+  status('Lesemodul wird geladen …');
+  var attempts=[['back',0.5],['back',0.25],['front',0.5],['front',0.25],['back',0],['front',0]], found=null;
+  getWorker(status).then(function(w){
+    var p=Promise.resolve();
+    attempts.forEach(function(a,idx){
+      p=p.then(function(){
+        if(found)return;
+        status('Lese Ausweis … ('+(idx+1)+' von '+attempts.length+')');
+        return prepCanvas(imgs[a[0]].dataUrl,a[1]).then(function(cv){ return w.recognize(cv); }).then(function(res){ found=tryParse(res.data.text); });
+      });
+    });
+    return p;
+  }).then(function(){
+    if(found){
+      var n=applyMrz(found);
+      $('#ocrNote').innerHTML='<div class="msg ok">Aus den Ausweiszeilen gelesen ('+(found.type.charAt(0)==='P'?'Reisepass':'Ausweis')+(COUNTRY[found.country]?' · '+esc(COUNTRY[found.country]):'')+'): '+n+' Felder (grün). Bitte mit dem Ausweis vergleichen. Umlaute stehen in den Zeilen als AE, OE, UE, deshalb bitte Namen prüfen. Die Anschrift trägst du selbst ein.</div>';
       step=1; renderSteps(); window.scrollTo(0,0);
     } else {
-      m.innerHTML='<div class="msg warn">Es konnte nichts sicher gelesen werden. Bitte neu fotografieren oder die Daten eintippen.</div>';
+      m.innerHTML='<div class="msg warn">Die Zeilen mit den Buchstaben und Zahlen konnten nicht sicher gelesen werden. Bitte die Rückseite (bei Reisepass die Datenseite) neu fotografieren: gerade, hell, ohne Spiegelung. Oder die Daten im nächsten Schritt eintippen.</div>';
     }
   }).catch(function(e){
-    var t={not_granted:'Das Auslesen wurde nicht erlaubt.',rate_limited:'Zu viele Anfragen. Bitte kurz warten.',image_rejected:'Das Bild konnte nicht verarbeitet werden. Bitte neu fotografieren.',invalid_json:'Die Antwort war nicht lesbar. Bitte noch einmal versuchen.'}[e&&e.code]||'Auslesen nicht möglich. Die Daten kannst du im nächsten Schritt eintippen.';
-    m.innerHTML='<div class="msg err" role="alert">'+esc(t)+'</div>';
-  }).then(function(){ b.textContent='Daten aus Ausweis auslesen'; updateOcrBtn(); });
+    m.innerHTML='<div class="msg err" role="alert">Das Lesemodul konnte nicht geladen werden. Bitte Internet prüfen oder die Daten im nächsten Schritt eintippen.</div>';
+  }).then(function(){ busy=false; b.textContent='Daten aus Ausweis lesen'; updateOcrBtn(); });
 }
 
 /* ---------- Testdaten ---------- */
@@ -742,40 +699,28 @@ function fakeCard(label){
   x.fillStyle='#e7edf2'; x.fillRect(0,0,1000,630); x.fillStyle='#9fb3c4'; x.fillRect(0,0,1000,90);
   x.fillStyle='#223'; x.font='bold 40px sans-serif'; x.fillText('TESTKARTE – KEIN ECHTER AUSWEIS',40,60);
   x.font='bold 54px sans-serif'; x.fillText(label,40,200); x.font='34px sans-serif'; x.fillText('Mustermann, Max',40,290); x.fillText('geb. 01.01.1990',40,345); x.fillText('Musterstraße 1, 45127 Essen',40,400); x.fillText('Nr. T22000129',40,455);
-  var d=c.toDataURL('image/jpeg',.85); return new Promise(function(res){c.toBlob(function(b){res({blob:b,dataUrl:d,w:1000,h:630})},'image/jpeg',.85)});
+  return {dataUrl:c.toDataURL('image/jpeg',.85),w:1000,h:630};
 }
 function demo(){
-  Promise.all([fakeCard('VORDERSEITE'),fakeCard('RÜCKSEITE')]).then(function(a){
-    imgs.front=a[0]; imgs.back=a[1]; setSlot('front',a[0]); setSlot('back',a[1]);
-    var t={vorname:'Max',nachname:'Mustermann',geburtsdatum:'1990-01-01',staat:'Deutschland',strasse:'Musterstraße 1',plz:'45127',ort:'Essen',ausweisNr:'T22000129',preis:'250,00'};
-    Object.keys(t).forEach(function(k){f[k]=t[k]});
-    f.devices=[{art:'Handy',modell:'iPhone 13',zustand:'Gebraucht',defekt:'',serial:'TESTSERIAL123',imei:'356938035643809'},
-               {art:'Handy',modell:'Samsung A52',zustand:'Defekt',defekt:'Display',serial:'',imei:'490154203237518'}];
-    bindFields(); updateOcrBtn();
-    $('#ocrMsg').innerHTML='<div class="msg warn">Testdaten eingesetzt. Gehe mit „Weiter“ durch die Schritte.</div>';
-  });
-}
-
-/* ---------- Datensicherung ---------- */
-function backup(){
-  var data=contracts.map(function(c){var o=JSON.parse(JSON.stringify(c)); delete o.sigKunde; delete o.sigShop; delete o.idFront; delete o.idBack; return o});
-  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  saveBlob(blob,'Kaufvertraege_Sicherung_'+todayISO()+'.json').catch(function(){});
+  var a=[fakeCard('VORDERSEITE'),fakeCard('RÜCKSEITE')]; dirty=true;
+  imgs.front=a[0]; imgs.back=a[1]; setSlot('front',a[0]); setSlot('back',a[1]);
+  var t={vorname:'Max',nachname:'Mustermann',geburtsdatum:'1990-01-01',staat:'Deutschland',strasse:'Musterstraße 1',plz:'45127',ort:'Essen',ausweisNr:'T22000129',preis:'250,00'};
+  Object.keys(t).forEach(function(k){f[k]=t[k]});
+  f.devices=[{art:'Handy',modell:'iPhone 13',zustand:'Gebraucht',defekt:'',serial:'TESTSERIAL123',imei:'356938035643809'},
+             {art:'Handy',modell:'Samsung A52',zustand:'Defekt',defekt:'Display',serial:'',imei:'490154203237518'}];
+  bindFields(); updateOcrBtn();
+  $('#ocrMsg').innerHTML='<div class="msg warn">Testdaten eingesetzt. Gehe mit „Weiter“ durch die Schritte.</div>';
 }
 
 /* ---------- Start ---------- */
 function wire(){
-  $('#q').addEventListener('input',renderList);
-  $('#list').addEventListener('click',function(e){ var b=e.target.closest('[data-open]'); if(b)openDetail(b.getAttribute('data-open')); });
-  $('#btnBackup').onclick=backup;
+  $('#btnNew').onclick=startNew;
   $('#btnBack').onclick=back; $('#btnNext').onclick=next;
-  $('#steps').addEventListener('click',function(e){ var b=e.target.closest('[data-go]'); if(!b)return; var t=+b.getAttribute('data-go'); if(t<=step||editing){step=t;renderSteps();} });
+  $('#steps').addEventListener('click',function(e){ var b=e.target.closest('[data-go]'); if(!b||busy)return; var t=+b.getAttribute('data-go'); if(t<=step){step=t;renderSteps();} });
   $('#vForm').addEventListener('input',function(e){
+    dirty=true;
     var k=e.target.getAttribute&&e.target.getAttribute('data-f');
-    if(k){
-      f[k]=e.target.value; if(aiKeys[k]){delete aiKeys[k]; e.target.classList.remove('ai');}
-      if(k==='ausweisNr'||k==='nachname'||k==='vorname')custHint(); return;
-    }
+    if(k){ f[k]=e.target.value; if(aiKeys[k]){delete aiKeys[k]; e.target.classList.remove('ai');} return; }
     var dk=e.target.getAttribute&&e.target.getAttribute('data-d');
     if(dk){ var card=e.target.closest('[data-dev]'); var i=+card.getAttribute('data-dev'); f.devices[i][dk]=e.target.value; if(dk==='imei')imeiHint(i); }
   });
@@ -786,8 +731,8 @@ function wire(){
   $$('[data-photo]').forEach(function(inp){
     inp.addEventListener('change',function(){
       var k=inp.getAttribute('data-photo'), file=inp.files&&inp.files[0]; if(!file)return;
-      var m=$('#ocrMsg'); m.innerHTML='';
-      shrink(file,caps.assets||caps.db?1600:1000,caps.assets||caps.db?0.82:0.7).then(function(img){ imgs[k]=img; setSlot(k,img); updateOcrBtn(); })
+      var m=$('#ocrMsg'); m.innerHTML=''; dirty=true;
+      shrink(file,1800,0.85).then(function(img){ imgs[k]=img; setSlot(k,img); updateOcrBtn(); })
         .catch(function(err){ m.innerHTML='<div class="msg err">'+esc(err.message)+'</div>'; });
       inp.value='';
     });
@@ -796,36 +741,13 @@ function wire(){
   $('#agb').innerHTML='<p>'+esc(TERMS_TEXT)+'</p><p>'+esc(TERMS_CONSENT)+'</p>';
   pads.kunde=new Pad($('#padKunde'),'kunde'); pads.shop=new Pad($('#padShop'),'shop');
   $$('[data-clear]').forEach(function(b){ b.onclick=function(){ pads[b.getAttribute('data-clear')].clear(); }; });
-  $('#vDetail').addEventListener('click',function(e){
-    if(e.target.closest('#dBack')){ show('home'); renderList(); return; }
-    if(e.target.closest('#dPdf')){ doPdf(); return; }
+  $('#vDone').addEventListener('click',function(e){
     var pa=e.target.closest('#pShare,#pOpen,#pSave'); if(pa){ pdfAction(pa.id); return; }
-    if(e.target.closest('#dEdit')){ startEdit(current); return; }
-    var z=e.target.closest('[data-zoom]'); if(z){ var lb=document.createElement('div'); lb.className='lightbox'; lb.innerHTML='<img alt="Ausweis" src="'+esc(z.getAttribute('data-zoom'))+'"><button class="btn sm" type="button">Schließen</button>'; lb.onclick=function(){lb.remove()}; document.body.appendChild(lb); return; }
-    if(e.target.closest('#dDel')){ $('#dDelBox').innerHTML='<p class="msg err">Wirklich löschen? Das lässt sich nicht rückgängig machen.</p><div style="display:flex;gap:10px"><button class="btn danger sm" id="dDelYes" type="button">Ja, löschen</button><button class="btn ghost sm" id="dDelNo" type="button">Abbrechen</button></div>'; return; }
-    if(e.target.closest('#dDelNo')){ $('#dDelBox').innerHTML=''; return; }
-    if(e.target.closest('#dDelYes')){ store.del(current.id).then(function(){ contracts=contracts.filter(function(x){return x.id!==current.id}); show('home'); renderList(); }).catch(function(err){ $('#dDelBox').innerHTML='<p class="msg err">Löschen fehlgeschlagen: '+esc(err&&err.message||'Fehler')+'</p>'; }); }
+    if(e.target.closest('#btnEditAgain')){ show('form'); step=3; renderSteps(); return; }
+    if(e.target.closest('#btnWipe')){ wipe(); }
   });
+  window.addEventListener('beforeunload',function(e){ if(dirty&&view!=='home'){ e.preventDefault(); e.returnValue=''; } });
 }
-
-function setChip(){
-  var c=$('#chip');
-  if(caps.db){ c.textContent='Cloud-Speicher aktiv'; c.className='chip'; }
-  else { c.textContent='Testmodus · nur dieses Gerät'; c.className='chip test'; }
-}
-function boot(){
-  wire(); renderList();
-  var use=(window.claude&&window.claude.use)?function(n){return window.claude.use(n).catch(function(){return null})}:function(){return Promise.resolve(null)};
-  Promise.all([use('db'),use('assets'),use('sample'),use('downloads')]).then(function(r){
-    caps.db=r[0]; caps.assets=r[1]; caps.sample=r[2]; caps.downloads=r[3];
-    setChip();
-    var lim=caps.sample&&caps.sample.limits?caps.sample.limits().catch(function(){return null}):Promise.resolve(null);
-    return lim;
-  }).then(function(lim){
-    caps.canRead=!!(lim&&lim.images); updateOcrBtn();
-    store.listen(function(a){ contracts=a; if(view==='home')renderList(); });
-  });
-}
-boot();
+wire(); show('home');
 })();
 </script>
